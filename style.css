@@ -1,0 +1,708 @@
+/* ================= GENERAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #ffffff;
+    color: #0b1d3a;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 50px;
+
+    background: rgba(7, 23, 48, 0.96);
+    border-bottom: 1px solid rgba(212, 180, 90, 0.5);
+
+    z-index: 1000;
+}
+
+.nav-logo img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #f4e7c1;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #d8b45c;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,1) 0%,
+            rgba(255,255,255,0.9) 30%,
+            rgba(225,232,241,0.5) 55%,
+            #ffffff 80%
+        );
+
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(215,190,120,0.18),
+            transparent 70%
+        );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-logo {
+    width: min(370px, 75vw);
+    margin-bottom: 20px;
+
+    filter:
+        drop-shadow(
+            0 8px 15px rgba(10,30,60,0.15)
+        );
+}
+
+.hero-tagline {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #0b1d3a;
+}
+
+.hero-divider {
+    margin: 18px 0;
+    color: #b99642;
+    font-size: 22px;
+}
+
+.enter-button {
+    display: inline-block;
+
+    padding: 13px 30px;
+
+    border: 1px solid #b99642;
+
+    color: #0b1d3a;
+    text-decoration: none;
+
+    font-size: 12px;
+    letter-spacing: 3px;
+
+    transition: 0.3s;
+}
+
+.enter-button:hover {
+    background: #0b1d3a;
+    color: #f4e7c1;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.school,
+.houses,
+.sorting,
+.spells {
+    padding: 110px 8%;
+    text-align: center;
+}
+
+.school {
+    background: #0b1d3a;
+    color: #f4e7c1;
+}
+
+h2 {
+    margin-bottom: 20px;
+
+    color: #b99642;
+
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.school p,
+.spells p {
+    max-width: 650px;
+
+    margin: auto;
+
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+.section-intro {
+    margin-bottom: 45px;
+    color: #657083;
+    letter-spacing: 1px;
+}
+
+
+/* ================= HOUSES ================= */
+
+.houses {
+    background: #ffffff;
+}
+
+.house-container {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.house {
+    min-height: 380px;
+
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #faf9f5;
+
+    border: 1px solid #d8c99f;
+
+    transition: 0.3s;
+}
+
+.house:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 15px 35px rgba(10,30,60,0.12);
+}
+
+.house-logo {
+    width: 180px;
+    height: 180px;
+
+    object-fit: contain;
+
+    margin-bottom: 15px;
+}
+
+.house h3 {
+    margin-bottom: 10px;
+
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.house p {
+    color: #657083;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.aurelion-title {
+    color: #9b2935;
+}
+
+.corvane-title {
+    color: #315d9b;
+}
+
+.fidelis-title {
+    color: #b78b2f;
+}
+
+.vesperyn-title {
+    color: #35724d;
+}
+
+
+/* ================= SORTING ================= */
+
+.sorting {
+    min-height: 700px;
+
+    background:
+        radial-gradient(
+            circle,
+            #172e50,
+            #07162c
+        );
+
+    color: #f4e7c1;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ================= START SCREEN ================= */
+
+#start-screen {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+#start-screen h1 {
+    margin-bottom: 12px;
+
+    color: #f4e7c1;
+
+    font-size: clamp(42px, 6vw, 72px);
+
+    letter-spacing: 1px;
+}
+
+#start-screen p {
+    margin-bottom: 30px;
+
+    color: #f4e7c1;
+
+    font-size: 18px;
+}
+
+
+/* ================= START BUTTON ================= */
+
+.sorting-start-button {
+    padding: 14px 32px;
+
+    border: 1px solid #d8b45c;
+
+    background: transparent;
+
+    color: #f4e7c1;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.sorting-start-button:hover {
+    background: #d8b45c;
+    color: #07162c;
+}
+
+
+/* ================= QUIZ AREA ================= */
+
+#sorting-result {
+    width: 100%;
+    display: none;
+}
+
+.quiz-box {
+    width: 100%;
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 35px;
+
+    border: 1px solid rgba(216,180,92,0.5);
+
+    background: rgba(255,255,255,0.05);
+
+    text-align: center;
+}
+
+
+/* ================= QUESTION NUMBER ================= */
+
+.question-number {
+    margin-bottom: 15px;
+
+    color: #d8b45c;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+
+/* ================= QUESTION ================= */
+
+.quiz-box h3 {
+    margin-bottom: 30px;
+
+    color: #f4e7c1;
+
+    font-size: 21px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= ANSWERS ================= */
+
+.answer-container {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.answer-button {
+    width: 100%;
+
+    display: block;
+
+    padding: 14px 18px;
+
+    border: 1px solid rgba(216,180,92,0.5);
+
+    background: rgba(7,22,44,0.7);
+
+    color: #f4e7c1;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.answer-button:hover {
+    background: #d8b45c;
+    color: #07162c;
+
+    transform: translateY(-2px);
+}
+
+
+/* ================= RESULT ================= */
+
+.sorting-result-card {
+    width: 100%;
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding: 40px 30px;
+
+    border: 1px solid rgba(216,180,92,0.6);
+
+    background: rgba(255,255,255,0.05);
+
+    text-align: center;
+}
+
+.sorting-label {
+    margin-bottom: 20px;
+
+    color: #d8b45c;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+.sorting-house-logo {
+    width: 180px;
+    height: 180px;
+
+    object-fit: contain;
+
+    margin: 20px auto;
+
+    display: block;
+}
+
+.sorting-result-card h3 {
+    margin-bottom: 10px;
+
+    color: #d8b45c;
+
+    font-size: 34px;
+}
+
+.house-motto {
+    margin-bottom: 20px;
+
+    color: #f4e7c1;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+.house-description {
+    max-width: 480px;
+
+    margin: 0 auto 25px;
+
+    color: #d8dce3;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+.destiny-text {
+    color: #d8b45c;
+
+    font-size: 14px;
+}
+
+
+/* ================= MUSIC BUTTON ================= */
+
+.music-control {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid #d8b45c;
+
+    border-radius: 50%;
+
+    background: rgba(7,22,44,0.9);
+
+    color: #f4e7c1;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    z-index: 2000;
+
+    transition: 0.3s;
+}
+
+.music-control:hover {
+    background: #d8b45c;
+    color: #07162c;
+}
+
+
+/* ================= HAK PATER ================= */
+
+.spells {
+    background: #f8f7f3;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    padding: 50px 20px;
+
+    background: #07162c;
+
+    color: #f4e7c1;
+
+    text-align: center;
+
+    border-top: 1px solid #b99642;
+}
+
+.footer-logo {
+    width: 90px;
+    margin-bottom: 15px;
+}
+
+footer p {
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+footer small {
+    opacity: 0.7;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+    .house-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        padding: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-logo {
+        width: 280px;
+    }
+
+    .hero-tagline {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .house-container {
+        grid-template-columns: 1fr;
+    }
+
+    .quiz-box {
+        padding: 25px 18px;
+    }
+
+    .quiz-box h3 {
+        font-size: 18px;
+    }
+
+    #start-screen h1 {
+        font-size: 40px;
+    }
+
+    #start-screen p {
+        font-size: 15px;
+    }
+
+    .music-control {
+        right: 15px;
+        bottom: 15px;
+    }
+}
+/* ================= HOUSE LORE ================= */
+
+.house {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.house-lore {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+        max-height 0.5s ease,
+        opacity 0.4s ease,
+        margin-top 0.4s ease;
+}
+
+.house.active .house-lore {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.house.active {
+    transform: translateY(-5px);
+}
+
+.house-lore p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+}

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HowSorcs — Hogwarts Sorcery School</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-logo">
+
+            <img
+                src="assets/logos/howsorcs logo.png"
+                alt="HowSorcs Logo"
+            >
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="#home">HOME</a>
+
+            <a href="#school">THE SCHOOL</a>
+
+            <a href="#houses">HOUSES</a>
+
+            <a href="#sorting">SORTING HAT</a>
+
+            <a href="#spells">HAK PATEN</a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <main
+        class="hero"
+        id="home"
+    >
+
+        <div class="hero-content">
+
+            <img
+                src="assets/logos/howsorcs logo.png"
+                alt="HowSorcs"
+                class="hero-logo"
+            >
+
+
+            <p class="hero-tagline">
+
+                WHERE MAGIC BEGINS,
+                AND LEGENDS ARE BORN.
+
+            </p>
+
+
+            <div class="hero-divider">
+                ✦
+            </div>
+
+
+            <a
+                href="#school"
+                class="enter-button"
+            >
+                ENTER THE ACADEMY
+            </a>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= THE SCHOOL ================= -->
+
+    <section
+        class="school"
+        id="school"
+    >
+
+        <h2>
+            The School
+        </h2>
+
+
+        <p>
+
+            Hogwarts Sorcery School (HSS) — an academy of the arcane arts, veiled from the sight of the Muggle world, standing resplendent within a valley shrouded in eternal mist, reachable only by the Hogwarts Express or a hidden portal gate. Its architecture soars in the manner of an ancient European castle, crowned with towering spires, each embodying one of the four houses.
+Origins
+HSS was founded centuries past by four legendary sorcerers who bequeathed their virtues through the houses: Aurelion (blazing courage), Corvane (razor-sharp intellect), Fidelis (unwavering loyalty and diligence), and Vesperyn (fervent ambition). The school was established as both sanctuary and seat of learning for young spellcasters, sequestered from the scrutiny of the non-magical realm.
+
+        </p>
+
+    </section>
+
+
+
+<!-- ================= HOUSES ================= -->
+
+<section
+    class="houses"
+    id="houses"
+>
+
+    <h2>
+        The Houses
+    </h2>
+
+    <p class="section-intro">
+        Four houses. Four paths. One destiny.
+    </p>
+
+
+    <div class="house-container">
+
+
+        <!-- ================= AURELION ================= -->
+
+        <div
+            class="house"
+            onclick="toggleHouse(this)"
+        >
+
+            <img
+                src="assets/logos/aurelion.png"
+                alt="Aurelion"
+                class="house-logo"
+            >
+
+            <h3>
+                Aurelion
+            </h3>
+
+            <p>
+                Courage, bravery,
+                and determination.
+            </p>
+
+            <div class="house-lore">
+
+                <p>
+                    Born from the fire of those who dare to stand
+                    when others retreat, Aurelion values courage
+                    above comfort. Its members are known for their
+                    fearless hearts, unwavering determination, and
+                    willingness to protect what they believe is right.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= CORVANE ================= -->
+
+        <div
+            class="house"
+            onclick="toggleHouse(this)"
+        >
+
+            <img
+                src="assets/logos/corvane.png"
+                alt="Corvane"
+                class="house-logo"
+            >
+
+            <h3>
+                Corvane
+            </h3>
+
+            <p>
+                Wisdom, intelligence,
+                and creativity.
+            </p>
+
+            <div class="house-lore">
+
+                <p>
+                    Corvane was founded upon the belief that knowledge
+                    is the sharpest form of magic. Its members seek
+                    answers where others see mysteries, valuing
+                    intelligence, curiosity, imagination, and the
+                    freedom to think beyond what is known.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= FIDELIS ================= -->
+
+        <div
+            class="house"
+            onclick="toggleHouse(this)"
+        >
+
+            <img
+                src="assets/logos/fidelis.png"
+                alt="Fidelis"
+                class="house-logo"
+            >
+
+            <h3>
+                Fidelis
+            </h3>
+
+            <p>
+                Loyalty, kindness,
+                and dedication.
+            </p>
+
+            <div class="house-lore">
+
+                <p>
+                    Fidelis believes that the greatest magic is not
+                    power, but the bonds we choose to protect.
+                    Its members are loyal, compassionate, and devoted
+                    to those they call their own, standing beside
+                    their friends even when the path becomes difficult.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= VESPERYN ================= -->
+
+        <div
+            class="house"
+            onclick="toggleHouse(this)"
+        >
+
+            <img
+                src="assets/logos/vesperyn.png"
+                alt="Vesperyn"
+                class="house-logo"
+            >
+
+            <h3>
+                Vesperyn
+            </h3>
+
+            <p>
+                Ambition, cunning,
+                and resourcefulness.
+            </p>
+
+            <div class="house-lore">
+
+                <p>
+                    Vesperyn was shaped by those who refuse to be
+                    limited by circumstance. Its members are ambitious,
+                    strategic, and resourceful, understanding that
+                    sometimes the greatest victories belong to those
+                    who know when to act and when to wait.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+    <!-- ================= SORTING HAT ================= -->
+
+    <section
+        class="sorting"
+        id="sorting"
+    >
+
+
+        <!-- START SCREEN -->
+
+        <div id="start-screen">
+
+            <h1>
+                The Sorting Hat
+            </h1>
+
+
+            <p>
+                Discover which house awaits you.
+            </p>
+
+
+            <button
+                type="button"
+                id="begin-btn"
+                class="sorting-start-button"
+            >
+
+                BEGIN SORTING
+
+            </button>
+
+        </div>
+
+
+
+        <!-- QUIZ -->
+
+        <div id="sorting-result"></div>
+
+
+    </section>
+
+    <!-- ================= HAK PATEN ================= -->
+
+   <p>
+    DISCLAIMER & HAK PATEN.
+
+    Hogwarts Sorcery School merupakan konsep dan karya kreatif yang dikembangkan berdasarkan ide, kreativitas, dan pengembangan dari Core Team Howsorcs.
+
+    Seluruh elemen yang dibuat secara khusus untuk proyek ini, termasuk namun tidak terbatas pada lore, sistem permainan, konsep house, karakter original, alur, desain, serta pengembangan dunia, merupakan bagian dari karya kreatif Core Team Howsorcs.
+
+    Namun, Hogwarts Sorcery School juga menggunakan sejumlah nama, istilah, konsep, dan elemen yang terinspirasi dari dunia Harry Potter karya J.K. Rowling.
+
+    Penggunaan elemen tersebut semata-mata dimaksudkan sebagai bentuk inspirasi dan penghormatan terhadap karya yang menjadi referensi, serta tidak dimaksudkan untuk mengklaim kepemilikan atas karakter, nama, dunia, maupun elemen orisinal yang menjadi hak pemegang hak cipta terkait.
+
+    Hogwarts Sorcery School tidak berafiliasi dengan, tidak disponsori oleh, dan tidak secara resmi terhubung dengan J.K. Rowling, Warner Bros., maupun pemegang hak atas Harry Potter.
+
+    Hak atas seluruh elemen yang berasal dari karya Harry Potter tetap berada pada pemegang haknya masing-masing. Sementara itu, elemen, konsep, dan pengembangan kreatif yang secara khusus dibuat oleh Core Team Howsorcs merupakan karya orisinal milik Core Team Howsorcs.
+
+    © 2026 CORE TEAM HOWSORCS
+
+    Hogwarts Sorcery School — A magical world inspired by stories we love, reimagined by Core Team Howsorcs.
+</p>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <img
+            src="assets/logos/howsorcs logo.png"
+            alt="HowSorcs"
+            class="footer-logo"
+        >
+
+
+        <p>
+            HowSorcs — Hogwarts Sorcery School
+        </p>
+
+
+        <small>
+            Where magic begins.
+        </small>
+
+    </footer>
+
+
+
+    <!-- ================= MUSIC ================= -->
+
+    <audio
+        id="sorting-music"
+        loop
+    >
+
+        <source
+            src="assets/music/hedwigs-theme.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
+
+    <button
+        id="music-control"
+        class="music-control"
+        type="button"
+        title="Music"
+    >
+        ♫
+    </button>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
