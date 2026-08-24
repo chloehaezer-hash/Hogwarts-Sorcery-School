@@ -12,8 +12,8 @@ html {
 
 body {
     font-family: Georgia, "Times New Roman", serif;
-    background: #ffffff;
-    color: #0b1d3a;
+    background: #07162c;
+    color: #f4e7c1;
 }
 
 
@@ -78,31 +78,53 @@ body {
     background:
         radial-gradient(
             circle at center,
-            rgba(255,255,255,1) 0%,
-            rgba(255,255,255,0.9) 30%,
-            rgba(225,232,241,0.5) 55%,
-            #ffffff 80%
+            #172e50 0%,
+            #0d2343 35%,
+            #07162c 75%,
+            #040d1c 100%
         );
 
     overflow: hidden;
 }
+
+
+/* STAR / GLOW EFFECT */
 
 .hero::before {
     content: "";
 
     position: absolute;
 
-    width: 700px;
-    height: 700px;
-
-    border-radius: 50%;
+    inset: 0;
 
     background:
         radial-gradient(
-            circle,
-            rgba(215,190,120,0.18),
-            transparent 70%
+            circle at 20% 25%,
+            rgba(255,255,255,0.7) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 75% 20%,
+            rgba(255,255,255,0.6) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 35% 70%,
+            rgba(255,255,255,0.5) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 85% 65%,
+            rgba(255,255,255,0.6) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at center,
+            rgba(215,190,120,0.14),
+            transparent 55%
         );
+
+    pointer-events: none;
 }
 
 .hero-content {
@@ -120,14 +142,14 @@ body {
 
     filter:
         drop-shadow(
-            0 8px 15px rgba(10,30,60,0.15)
+            0 8px 15px rgba(10,30,60,0.35)
         );
 }
 
 .hero-tagline {
     font-size: 13px;
     letter-spacing: 4px;
-    color: #0b1d3a;
+    color: #f4e7c1;
 }
 
 .hero-divider {
@@ -143,7 +165,7 @@ body {
 
     border: 1px solid #b99642;
 
-    color: #0b1d3a;
+    color: #f4e7c1;
     text-decoration: none;
 
     font-size: 12px;
@@ -153,8 +175,8 @@ body {
 }
 
 .enter-button:hover {
-    background: #0b1d3a;
-    color: #f4e7c1;
+    background: #d8b45c;
+    color: #07162c;
 }
 
 
@@ -166,12 +188,68 @@ body {
 .spells {
     padding: 110px 8%;
     text-align: center;
+
+    position: relative;
+    overflow: hidden;
 }
 
-.school {
-    background: #0b1d3a;
+
+/* ================= SECTION BACKGROUND ================= */
+
+.school,
+.houses,
+.spells {
+    background:
+        radial-gradient(
+            circle at center,
+            #172e50 0%,
+            #0d2343 40%,
+            #07162c 85%,
+            #040d1c 100%
+        );
+
     color: #f4e7c1;
 }
+
+
+/* ================= SECTION STARS ================= */
+
+.school::before,
+.houses::before,
+.spells::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,255,255,0.45) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(255,255,255,0.35) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 30% 75%,
+            rgba(255,255,255,0.3) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255,255,255,0.4) 0 1px,
+            transparent 2px
+        );
+
+    pointer-events: none;
+}
+
+
+/* ================= HEADINGS ================= */
 
 h2 {
     margin-bottom: 20px;
@@ -180,6 +258,9 @@ h2 {
 
     font-size: 40px;
     letter-spacing: 2px;
+
+    position: relative;
+    z-index: 2;
 }
 
 .school p,
@@ -190,19 +271,40 @@ h2 {
 
     line-height: 1.9;
     font-size: 16px;
+
+    position: relative;
+    z-index: 2;
 }
 
 .section-intro {
     margin-bottom: 45px;
-    color: #657083;
+    color: #d8dce3;
     letter-spacing: 1px;
+}
+
+
+/* ================= SCHOOL ================= */
+
+.school {
+    background:
+        radial-gradient(
+            circle at center,
+            #172e50,
+            #07162c 80%
+        );
 }
 
 
 /* ================= HOUSES ================= */
 
 .houses {
-    background: #ffffff;
+    background:
+        radial-gradient(
+            circle at center,
+            #172e50 0%,
+            #0d2343 40%,
+            #07162c 90%
+        );
 }
 
 .house-container {
@@ -215,6 +317,9 @@ h2 {
     grid-template-columns: repeat(4, 1fr);
 
     gap: 25px;
+
+    position: relative;
+    z-index: 2;
 }
 
 .house {
@@ -228,18 +333,30 @@ h2 {
     align-items: center;
     justify-content: center;
 
-    background: #faf9f5;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23,46,80,0.95),
+            rgba(7,22,44,0.95)
+        );
 
-    border: 1px solid #d8c99f;
+    border: 1px solid rgba(216,180,92,0.5);
 
-    transition: 0.3s;
+    color: #f4e7c1;
+
+    transition: all 0.3s ease;
+
+    cursor: pointer;
+    position: relative;
 }
 
 .house:hover {
     transform: translateY(-8px);
 
+    border-color: #d8b45c;
+
     box-shadow:
-        0 15px 35px rgba(10,30,60,0.12);
+        0 15px 35px rgba(0,0,0,0.3);
 }
 
 .house-logo {
@@ -254,12 +371,14 @@ h2 {
 .house h3 {
     margin-bottom: 10px;
 
+    color: #d8b45c;
+
     font-size: 25px;
     letter-spacing: 2px;
 }
 
 .house p {
-    color: #657083;
+    color: #d8dce3;
 
     font-size: 13px;
     line-height: 1.7;
@@ -279,6 +398,35 @@ h2 {
 
 .vesperyn-title {
     color: #35724d;
+}
+
+
+/* ================= HOUSE LORE ================= */
+
+.house-lore {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    transition:
+        max-height 0.5s ease,
+        opacity 0.4s ease,
+        margin-top 0.4s ease;
+}
+
+.house.active .house-lore {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 20px;
+}
+
+.house.active {
+    transform: translateY(-5px);
+}
+
+.house-lore p {
+    font-size: 0.9rem;
+    line-height: 1.7;
 }
 
 
@@ -315,6 +463,9 @@ h2 {
     align-items: center;
 
     text-align: center;
+
+    position: relative;
+    z-index: 2;
 }
 
 #start-screen h1 {
@@ -369,6 +520,9 @@ h2 {
 #sorting-result {
     width: 100%;
     display: none;
+
+    position: relative;
+    z-index: 2;
 }
 
 .quiz-box {
@@ -531,6 +685,85 @@ h2 {
 }
 
 
+/* ================= HAK PATEN ================= */
+
+.spells {
+    background:
+        radial-gradient(
+            circle at center,
+            #172e50 0%,
+            #0d2343 40%,
+            #07162c 90%
+        );
+
+    color: #f4e7c1;
+}
+
+.patent-content {
+    width: 100%;
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 35px 40px;
+
+    position: relative;
+    z-index: 2;
+
+    background: rgba(7,22,44,0.65);
+
+    border: 1px solid rgba(216,180,92,0.5);
+
+    text-align: left;
+}
+
+.patent-content p {
+    max-width: none;
+
+    margin: 0 0 20px;
+
+    color: #d8dce3;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+.patent-divider {
+    margin: 25px 0;
+
+    text-align: center;
+
+    color: #d8b45c;
+
+    font-size: 20px;
+}
+
+.patent-content .copyright {
+    margin-bottom: 10px;
+
+    color: #d8b45c;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+.patent-content .patent-closing {
+    margin-bottom: 0;
+
+    color: #f4e7c1;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-style: italic;
+}
+
+
 /* ================= MUSIC BUTTON ================= */
 
 .music-control {
@@ -562,13 +795,6 @@ h2 {
 .music-control:hover {
     background: #d8b45c;
     color: #07162c;
-}
-
-
-/* ================= HAK PATER ================= */
-
-.spells {
-    background: #f8f7f3;
 }
 
 
@@ -619,6 +845,10 @@ footer small {
 
     .nav-links a {
         font-size: 10px;
+    }
+
+    .patent-content {
+        padding: 30px 25px;
     }
 }
 
@@ -673,36 +903,109 @@ footer small {
         right: 15px;
         bottom: 15px;
     }
-}
-/* ================= HOUSE LORE ================= */
 
-.house {
-    cursor: pointer;
-    position: relative;
-    transition: all 0.3s ease;
-}
+    .patent-content {
+        padding: 25px 18px;
+    }
 
-.house-lore {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition:
-        max-height 0.5s ease,
-        opacity 0.4s ease,
-        margin-top 0.4s ease;
+    .patent-content p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
 }
+/* ================= HOUSE COLORS ================= */
 
-.house.active .house-lore {
-    max-height: 300px;
-    opacity: 1;
-    margin-top: 20px;
-}
+/* AURELION — RED & GOLD */
+.house:nth-child(1) {
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(155, 41, 53, 0.75),
+            rgba(105, 25, 38, 0.9) 45%,
+            rgba(35, 15, 25, 0.98) 100%
+        );
 
-.house.active {
-    transform: translateY(-5px);
+    border-color: rgba(212, 180, 90, 0.75);
 }
 
-.house-lore p {
-    font-size: 0.9rem;
-    line-height: 1.7;
+.house:nth-child(1) h3 {
+    color: #d8b45c;
+}
+
+
+/* CORVANE — BLUE & BLACK */
+.house:nth-child(2) {
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(49, 93, 155, 0.75),
+            rgba(25, 50, 90, 0.9) 45%,
+            rgba(5, 10, 20, 0.98) 100%
+        );
+
+    border-color: rgba(100, 130, 180, 0.65);
+}
+
+.house:nth-child(2) h3 {
+    color: #9db9df;
+}
+
+
+/* FIDELIS — YELLOW & ORANGE */
+.house:nth-child(3) {
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(190, 145, 45, 0.75),
+            rgba(170, 90, 25, 0.9) 45%,
+            rgba(45, 25, 10, 0.98) 100%
+        );
+
+    border-color: rgba(230, 190, 80, 0.75);
+}
+
+.house:nth-child(3) h3 {
+    color: #f0c85a;
+}
+
+
+/* VESPERYN — GREEN & SILVER */
+.house:nth-child(4) {
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(53, 114, 77, 0.75),
+            rgba(25, 70, 50, 0.9) 45%,
+            rgba(10, 25, 20, 0.98) 100%
+        );
+
+    border-color: rgba(180, 190, 185, 0.65);
+}
+
+.house:nth-child(4) h3 {
+    color: #c5ccc8;
+}
+
+
+/* HOUSE TEXT */
+.house p {
+    color: #f4e7c1;
+}
+
+
+/* HOUSE HOVER */
+.house:nth-child(1):hover {
+    box-shadow: 0 15px 35px rgba(155, 41, 53, 0.35);
+}
+
+.house:nth-child(2):hover {
+    box-shadow: 0 15px 35px rgba(49, 93, 155, 0.35);
+}
+
+.house:nth-child(3):hover {
+    box-shadow: 0 15px 35px rgba(190, 145, 45, 0.35);
+}
+
+.house:nth-child(4):hover {
+    box-shadow: 0 15px 35px rgba(53, 114, 77, 0.35);
 }
