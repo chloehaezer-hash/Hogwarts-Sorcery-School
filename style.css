@@ -1,4 +1,6 @@
-/* ================= GENERAL ================= */
+/* =====================================================
+   GENERAL
+   ===================================================== */
 
 * {
     margin: 0;
@@ -17,7 +19,9 @@ body {
 }
 
 
-/* ================= NAVBAR ================= */
+/* =====================================================
+   NAVBAR
+   ===================================================== */
 
 .navbar {
     position: fixed;
@@ -34,6 +38,7 @@ body {
     padding: 10px 50px;
 
     background: rgba(7, 23, 48, 0.96);
+
     border-bottom: 1px solid rgba(212, 180, 90, 0.5);
 
     z-index: 1000;
@@ -56,7 +61,6 @@ body {
 .nav-links {
     display: flex;
     align-items: center;
-
     gap: 30px;
 }
 
@@ -76,7 +80,9 @@ body {
 }
 
 
-/* ================= HERO ================= */
+/* =====================================================
+   HERO
+   ===================================================== */
 
 .hero {
     min-height: 100vh;
@@ -103,14 +109,10 @@ body {
     overflow: hidden;
 }
 
-
-/* ================= HERO STARS ================= */
-
 .hero::before {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background:
@@ -143,14 +145,10 @@ body {
     pointer-events: none;
 }
 
-
-/* ================= HERO CONTENT ================= */
-
 .hero-content {
     width: 100%;
 
     position: relative;
-
     z-index: 2;
 
     display: flex;
@@ -172,7 +170,6 @@ body {
     margin: 0 auto 20px;
 
     position: relative;
-
     z-index: 10;
 
     visibility: visible;
@@ -226,12 +223,13 @@ body {
 
 .enter-button:hover {
     background: #d8b45c;
-
     color: #07162c;
 }
 
 
-/* ================= SECTIONS ================= */
+/* =====================================================
+   SECTIONS
+   ===================================================== */
 
 .school,
 .houses,
@@ -247,7 +245,9 @@ body {
 }
 
 
-/* ================= SECTION BACKGROUND ================= */
+/* =====================================================
+   SECTION BACKGROUND
+   ===================================================== */
 
 .school,
 .houses,
@@ -265,7 +265,9 @@ body {
 }
 
 
-/* ================= SECTION STARS ================= */
+/* =====================================================
+   SECTION STARS
+   ===================================================== */
 
 .school::before,
 .houses::before,
@@ -273,7 +275,6 @@ body {
     content: "";
 
     position: absolute;
-
     inset: 0;
 
     background:
@@ -302,7 +303,9 @@ body {
 }
 
 
-/* ================= HEADINGS ================= */
+/* =====================================================
+   HEADINGS
+   ===================================================== */
 
 h2 {
     margin-bottom: 20px;
@@ -314,7 +317,6 @@ h2 {
     letter-spacing: 2px;
 
     position: relative;
-
     z-index: 2;
 }
 
@@ -329,7 +331,6 @@ h2 {
     font-size: 16px;
 
     position: relative;
-
     z-index: 2;
 }
 
@@ -342,7 +343,9 @@ h2 {
 }
 
 
-/* ================= SCHOOL ================= */
+/* =====================================================
+   SCHOOL
+   ===================================================== */
 
 .school {
     background:
@@ -354,7 +357,9 @@ h2 {
 }
 
 
-/* ================= HOUSES ================= */
+/* =====================================================
+   HOUSES
+   ===================================================== */
 
 .houses {
     background:
@@ -379,7 +384,6 @@ h2 {
     gap: 25px;
 
     position: relative;
-
     z-index: 2;
 }
 
@@ -397,13 +401,6 @@ h2 {
     align-items: center;
 
     justify-content: center;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(23,46,80,0.95),
-            rgba(7,22,44,0.95)
-        );
 
     border: 1px solid rgba(216,180,92,0.5);
 
@@ -455,7 +452,9 @@ h2 {
 }
 
 
-/* ================= HOUSE LORE ================= */
+/* =====================================================
+   HOUSE LORE
+   ===================================================== */
 
 .house-lore {
     max-height: 0;
@@ -489,7 +488,9 @@ h2 {
 }
 
 
-/* ================= HOUSE COLORS ================= */
+/* =====================================================
+   HOUSE COLORS
+   ===================================================== */
 
 /* AURELION */
 
@@ -567,7 +568,9 @@ h2 {
 }
 
 
-/* ================= HOUSE HOVER ================= */
+/* =====================================================
+   HOUSE HOVER
+   ===================================================== */
 
 .house:nth-child(1):hover {
     box-shadow:
@@ -590,7 +593,9 @@ h2 {
 }
 
 
-/* ================= SORTING ================= */
+/* =====================================================
+   SORTING
+   ===================================================== */
 
 .sorting {
     min-height: 700px;
@@ -614,7 +619,49 @@ h2 {
 }
 
 
-/* ================= START SCREEN ================= */
+/* =====================================================
+   SORTING HAT IMAGE
+   ===================================================== */
+
+.sorting-hat-image {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin: 0 auto 25px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.sorting-hat-image img {
+    width: min(260px, 65vw);
+
+    height: auto;
+
+    max-height: 300px;
+
+    object-fit: contain;
+
+    display: block;
+
+    margin: 0 auto;
+
+    filter:
+        drop-shadow(
+            0 12px 25px rgba(0,0,0,0.45)
+        );
+}
+
+
+/* =====================================================
+   START SCREEN
+   ===================================================== */
 
 #start-screen {
     width: 100%;
@@ -651,7 +698,9 @@ h2 {
 }
 
 
-/* ================= START BUTTON ================= */
+/* =====================================================
+   START BUTTON
+   ===================================================== */
 
 .sorting-start-button {
     padding: 14px 32px;
@@ -680,7 +729,9 @@ h2 {
 }
 
 
-/* ================= QUIZ AREA ================= */
+/* =====================================================
+   QUIZ AREA
+   ===================================================== */
 
 #sorting-result {
     width: 100%;
@@ -709,7 +760,9 @@ h2 {
 }
 
 
-/* ================= QUESTION NUMBER ================= */
+/* =====================================================
+   QUESTION NUMBER
+   ===================================================== */
 
 .question-number {
     margin-bottom: 15px;
@@ -722,7 +775,9 @@ h2 {
 }
 
 
-/* ================= QUESTION ================= */
+/* =====================================================
+   QUESTION
+   ===================================================== */
 
 .quiz-box h3 {
     margin-bottom: 30px;
@@ -735,7 +790,9 @@ h2 {
 }
 
 
-/* ================= ANSWERS ================= */
+/* =====================================================
+   ANSWERS
+   ===================================================== */
 
 .answer-container {
     width: 100%;
@@ -780,7 +837,9 @@ h2 {
 }
 
 
-/* ================= RESULT ================= */
+/* =====================================================
+   RESULT
+   ===================================================== */
 
 .sorting-result-card {
     width: 100%;
@@ -796,6 +855,12 @@ h2 {
     background: rgba(255,255,255,0.05);
 
     text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
 }
 
 .sorting-label {
@@ -806,6 +871,32 @@ h2 {
     font-size: 12px;
 
     letter-spacing: 3px;
+
+    text-align: center;
+}
+
+.sorting-result-card .sorting-hat-image {
+    width: 100%;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.sorting-result-card .sorting-hat-image img {
+    width: min(230px, 65vw);
+
+    height: auto;
+
+    max-height: 250px;
+
+    display: block;
+
+    margin: 0 auto;
 }
 
 .sorting-house-logo {
@@ -814,7 +905,7 @@ h2 {
 
     object-fit: contain;
 
-    margin: 20px auto;
+    margin: 5px auto 20px;
 
     display: block;
 }
@@ -856,7 +947,9 @@ h2 {
 }
 
 
-/* ================= HAK PATEN ================= */
+/* =====================================================
+   HAK PATEN
+   ===================================================== */
 
 .spells {
     background:
@@ -937,7 +1030,9 @@ h2 {
 }
 
 
-/* ================= MUSIC BUTTON ================= */
+/* =====================================================
+   MUSIC BUTTON
+   ===================================================== */
 
 .music-control {
     position: fixed;
@@ -974,7 +1069,9 @@ h2 {
 }
 
 
-/* ================= FOOTER ================= */
+/* =====================================================
+   FOOTER
+   ===================================================== */
 
 footer {
     padding: 50px 20px;
@@ -1009,9 +1106,9 @@ footer small {
 }
 
 
-/* ================================================= */
-/* ================= TABLET ======================== */
-/* ================================================= */
+/* =====================================================
+   TABLET
+   ===================================================== */
 
 @media (max-width: 900px) {
 
@@ -1040,60 +1137,56 @@ footer small {
     .patent-content {
         padding: 30px 25px;
     }
+
 }
 
 
-/* ================================================= */
-/* ================= PHONE ========================= */
-/* ================================================= */
+/* =====================================================
+   PHONE
+   ===================================================== */
+.sorting-result-wrapper {
+    width: 100%;
 
-@media (max-width: 600px) {
+    padding: 0 5px;
+}
 
-    /* ---------- NAVBAR ---------- */
+.sorting-label-box {
+    padding: 15px 12px;
 
-    .navbar {
-        position: fixed;
+    margin-bottom: 25px;
+}
 
-        width: 100%;
+.sorting-label {
+    font-size: 10px;
 
-        min-height: auto;
+    letter-spacing: 2px;
+}
 
-        padding: 8px 10px;
+.sorting-result-wrapper h3 {
+    font-size: 30px;
+}
 
-        flex-direction: column;
+.sorting-house-logo {
+    width: 150px;
 
-        align-items: center;
+    height: 150px;
+}
 
-        gap: 8px;
-    }
+.house-motto {
+    font-size: 12px;
 
-    .nav-logo img {
-        width: 50px;
+    line-height: 1.6;
+}
 
-        height: 50px;
-    }
+.house-description {
+    font-size: 13px;
 
-    .nav-links {
-        width: 100%;
+    line-height: 1.7;
+}
 
-        display: flex;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-
-        align-items: center;
-
-        gap: 6px 10px;
-    }
-
-    .nav-links a {
-        font-size: 9px;
-
-        letter-spacing: 1px;
-
-        white-space: nowrap;
-    }
+.destiny-text {
+    font-size: 12px;
+}
 
 
     /* ---------- HERO ---------- */
@@ -1215,6 +1308,26 @@ footer small {
         min-height: 650px;
     }
 
+    .sorting-hat-image {
+        width: 100%;
+
+        margin: 0 auto 20px;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+    }
+
+    .sorting-hat-image img {
+        width: min(210px, 65vw);
+
+        max-height: 230px;
+
+        margin: 0 auto;
+    }
+
     #start-screen {
         width: 100%;
 
@@ -1263,41 +1376,118 @@ footer small {
         line-height: 1.5;
     }
 
-    .sorting-result-card {
-        width: 100%;
+   /* =====================================================
+   SORTING RESULT
+   ===================================================== */
 
-        padding: 30px 20px;
-    }
+.sorting-result-wrapper {
+    width: 100%;
 
-    .sorting-result-card h3 {
-        font-size: 30px;
-    }
+    max-width: 600px;
 
-    .sorting-house-logo {
-        width: 150px;
+    margin: 0 auto;
 
-        height: 150px;
-    }
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+}
 
 
-    /* ---------- HAK PATEN ---------- */
+/* ================= SORTING LABEL BOX ================= */
 
-    .patent-content {
-        width: 100%;
+.sorting-label-box {
+    width: 100%;
 
-        padding: 25px 18px;
-    }
+    padding: 18px 20px;
 
-    .patent-content p {
-        font-size: 13px;
+    margin-bottom: 30px;
 
-        line-height: 1.7;
-    }
+    border: 1px solid rgba(216,180,92,0.6);
 
-    .patent-content .patent-closing {
-        font-size: 12px;
-    }
+    background: rgba(255,255,255,0.05);
 
+    text-align: center;
+}
+
+
+.sorting-label {
+    margin: 0;
+
+    color: #d8b45c;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    line-height: 1.6;
+}
+
+
+/* ================= HOUSE LOGO ================= */
+
+.sorting-house-logo {
+    width: 180px;
+
+    height: 180px;
+
+    object-fit: contain;
+
+    margin: 10px auto 20px;
+
+    display: block;
+}
+
+
+/* ================= HOUSE NAME ================= */
+
+.sorting-result-wrapper h3 {
+    margin-bottom: 10px;
+
+    color: #d8b45c;
+
+    font-size: 34px;
+}
+
+
+/* ================= MOTTO ================= */
+
+.house-motto {
+    margin-bottom: 20px;
+
+    color: #f4e7c1;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+/* ================= DESCRIPTION ================= */
+
+.house-description {
+    max-width: 480px;
+
+    margin: 0 auto 25px;
+
+    color: #d8dce3;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* ================= DESTINY ================= */
+
+.destiny-text {
+    color: #d8b45c;
+
+    font-size: 14px;
+
+    margin-top: 25px;
+}
 
     /* ---------- FOOTER ---------- */
 
@@ -1331,4 +1521,5 @@ footer small {
 
         height: 42px;
     }
+
 }

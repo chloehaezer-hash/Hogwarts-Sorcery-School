@@ -12,471 +12,194 @@ const questions = [
             "Ketika menghadapi masalah besar, apa yang paling mungkin kamu lakukan?",
 
         answers: [
-
-            [
-                "Menghadapinya langsung meskipun berisiko.",
-                "aurelion"
-            ],
-
-            [
-                "Mencari tahu semua informasi sebelum bertindak.",
-                "corvane"
-            ],
-
-            [
-                "Memastikan orang-orang di sekitarku tetap aman.",
-                "fidelis"
-            ],
-
-            [
-                "Mencari cara paling menguntungkan untuk keluar dari masalah.",
-                "vesperyn"
-            ]
-
+            ["Menghadapinya langsung meskipun berisiko.", "aurelion"],
+            ["Mencari tahu semua informasi sebelum bertindak.", "corvane"],
+            ["Memastikan orang-orang di sekitarku tetap aman.", "fidelis"],
+            ["Mencari cara paling menguntungkan untuk keluar dari masalah.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Apa yang paling kamu hargai dari seorang teman?",
 
         answers: [
-
-            [
-                "Keberaniannya.",
-                "aurelion"
-            ],
-
-            [
-                "Kecerdasannya.",
-                "corvane"
-            ],
-
-            [
-                "Kesetiaannya.",
-                "fidelis"
-            ],
-
-            [
-                "Ambisinya.",
-                "vesperyn"
-            ]
-
+            ["Keberaniannya.", "aurelion"],
+            ["Kecerdasannya.", "corvane"],
+            ["Kesetiaannya.", "fidelis"],
+            ["Ambisinya.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Jika kamu menemukan rahasia besar di sekolah, kamu akan...",
 
         answers: [
-
-            [
-                "Mencari tahu kebenarannya sendiri.",
-                "aurelion"
-            ],
-
-            [
-                "Mempelajarinya secara mendalam.",
-                "corvane"
-            ],
-
-            [
-                "Memastikan rahasia itu tidak membahayakan orang lain.",
-                "fidelis"
-            ],
-
-            [
-                "Memanfaatkannya sebagai keuntungan.",
-                "vesperyn"
-            ]
-
+            ["Mencari tahu kebenarannya sendiri.", "aurelion"],
+            ["Mempelajarinya secara mendalam.", "corvane"],
+            ["Memastikan rahasia itu tidak membahayakan orang lain.", "fidelis"],
+            ["Memanfaatkannya sebagai keuntungan.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Mana yang paling menggambarkan dirimu?",
 
         answers: [
-
-            [
-                "Berani.",
-                "aurelion"
-            ],
-
-            [
-                "Penasaran.",
-                "corvane"
-            ],
-
-            [
-                "Peduli.",
-                "fidelis"
-            ],
-
-            [
-                "Ambisius.",
-                "vesperyn"
-            ]
-
+            ["Berani.", "aurelion"],
+            ["Penasaran.", "corvane"],
+            ["Peduli.", "fidelis"],
+            ["Ambisius.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Saat melihat seseorang diperlakukan tidak adil, kamu...",
 
         answers: [
-
-            [
-                "Langsung membelanya.",
-                "aurelion"
-            ],
-
-            [
-                "Mencari tahu apa yang sebenarnya terjadi.",
-                "corvane"
-            ],
-
-            [
-                "Menemaninya dan memastikan dia baik-baik saja.",
-                "fidelis"
-            ],
-
-            [
-                "Mencari cara agar situasinya berubah.",
-                "vesperyn"
-            ]
-
+            ["Langsung membelanya.", "aurelion"],
+            ["Mencari tahu apa yang sebenarnya terjadi.", "corvane"],
+            ["Menemaninya dan memastikan dia baik-baik saja.", "fidelis"],
+            ["Mencari cara agar situasinya berubah.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Kalau diberi kesempatan mempelajari satu hal, kamu memilih...",
 
         answers: [
-
-            [
-                "Ilmu pertarungan sihir.",
-                "aurelion"
-            ],
-
-            [
-                "Sihir kuno dan sejarahnya.",
-                "corvane"
-            ],
-
-            [
-                "Ramuan penyembuhan.",
-                "fidelis"
-            ],
-
-            [
-                "Sihir yang dapat mengubah keadaan.",
-                "vesperyn"
-            ]
-
+            ["Ilmu pertarungan sihir.", "aurelion"],
+            ["Sihir kuno dan sejarahnya.", "corvane"],
+            ["Ramuan penyembuhan.", "fidelis"],
+            ["Sihir yang dapat mengubah keadaan.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Apa yang paling membuatmu bangga?",
 
         answers: [
-
-            [
-                "Berhasil melakukan sesuatu yang sebelumnya kutakuti.",
-                "aurelion"
-            ],
-
-            [
-                "Berhasil memahami sesuatu yang sulit.",
-                "corvane"
-            ],
-
-            [
-                "Berhasil membantu seseorang.",
-                "fidelis"
-            ],
-
-            [
-                "Berhasil mencapai targetku.",
-                "vesperyn"
-            ]
-
+            ["Berhasil melakukan sesuatu yang sebelumnya kutakuti.", "aurelion"],
+            ["Berhasil memahami sesuatu yang sulit.", "corvane"],
+            ["Berhasil membantu seseorang.", "fidelis"],
+            ["Berhasil mencapai targetku.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Ketika berada dalam kelompok, kamu biasanya...",
 
         answers: [
-
-            [
-                "Menjadi orang yang maju terlebih dahulu.",
-                "aurelion"
-            ],
-
-            [
-                "Memberikan ide dan strategi.",
-                "corvane"
-            ],
-
-            [
-                "Menjaga agar semua orang tetap kompak.",
-                "fidelis"
-            ],
-
-            [
-                "Mengatur langkah agar tujuan tercapai.",
-                "vesperyn"
-            ]
-
+            ["Menjadi orang yang maju terlebih dahulu.", "aurelion"],
+            ["Memberikan ide dan strategi.", "corvane"],
+            ["Menjaga agar semua orang tetap kompak.", "fidelis"],
+            ["Mengatur langkah agar tujuan tercapai.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Kalau rencanamu gagal, apa yang kamu lakukan?",
 
         answers: [
-
-            [
-                "Coba lagi dengan lebih berani.",
-                "aurelion"
-            ],
-
-            [
-                "Menganalisis kesalahannya.",
-                "corvane"
-            ],
-
-            [
-                "Meminta bantuan orang yang dipercaya.",
-                "fidelis"
-            ],
-
-            [
-                "Membuat strategi baru.",
-                "vesperyn"
-            ]
-
+            ["Coba lagi dengan lebih berani.", "aurelion"],
+            ["Menganalisis kesalahannya.", "corvane"],
+            ["Meminta bantuan orang yang dipercaya.", "fidelis"],
+            ["Membuat strategi baru.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Mana yang paling kamu takutkan?",
 
         answers: [
-
-            [
-                "Menjadi pengecut.",
-                "aurelion"
-            ],
-
-            [
-                "Kehilangan kesempatan untuk belajar.",
-                "corvane"
-            ],
-
-            [
-                "Kehilangan orang-orang yang kusayangi.",
-                "fidelis"
-            ],
-
-            [
-                "Gagal mencapai sesuatu yang kuinginkan.",
-                "vesperyn"
-            ]
-
+            ["Menjadi pengecut.", "aurelion"],
+            ["Kehilangan kesempatan untuk belajar.", "corvane"],
+            ["Kehilangan orang-orang yang kusayangi.", "fidelis"],
+            ["Gagal mencapai sesuatu yang kuinginkan.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Jika kamu memiliki kekuatan besar, kamu akan...",
 
         answers: [
-
-            [
-                "Menggunakannya untuk melindungi orang lain.",
-                "aurelion"
-            ],
-
-            [
-                "Mempelajari batas dan cara kerjanya.",
-                "corvane"
-            ],
-
-            [
-                "Menggunakannya untuk membantu orang-orang terdekat.",
-                "fidelis"
-            ],
-
-            [
-                "Menggunakannya untuk mengubah hidupku.",
-                "vesperyn"
-            ]
-
+            ["Menggunakannya untuk melindungi orang lain.", "aurelion"],
+            ["Mempelajari batas dan cara kerjanya.", "corvane"],
+            ["Menggunakannya untuk membantu orang-orang terdekat.", "fidelis"],
+            ["Menggunakannya untuk mengubah hidupku.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Orang-orang biasanya mengenalmu sebagai seseorang yang...",
 
         answers: [
-
-            [
-                "Berani dan blak-blakan.",
-                "aurelion"
-            ],
-
-            [
-                "Banyak berpikir dan bertanya.",
-                "corvane"
-            ],
-
-            [
-                "Bisa diandalkan.",
-                "fidelis"
-            ],
-
-            [
-                "Punya tujuan yang jelas.",
-                "vesperyn"
-            ]
-
+            ["Berani dan blak-blakan.", "aurelion"],
+            ["Banyak berpikir dan bertanya.", "corvane"],
+            ["Bisa diandalkan.", "fidelis"],
+            ["Punya tujuan yang jelas.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Jika harus memilih satu sifat untuk diperkuat, kamu memilih...",
 
         answers: [
-
-            [
-                "Keberanian.",
-                "aurelion"
-            ],
-
-            [
-                "Kebijaksanaan.",
-                "corvane"
-            ],
-
-            [
-                "Kesetiaan.",
-                "fidelis"
-            ],
-
-            [
-                "Ambisi.",
-                "vesperyn"
-            ]
-
+            ["Keberanian.", "aurelion"],
+            ["Kebijaksanaan.", "corvane"],
+            ["Kesetiaan.", "fidelis"],
+            ["Ambisi.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Apa yang paling penting ketika mengejar impian?",
 
         answers: [
-
-            [
-                "Berani mengambil langkah pertama.",
-                "aurelion"
-            ],
-
-            [
-                "Memiliki pengetahuan yang cukup.",
-                "corvane"
-            ],
-
-            [
-                "Memiliki orang-orang yang mendukung.",
-                "fidelis"
-            ],
-
-            [
-                "Tidak menyerah sampai berhasil.",
-                "vesperyn"
-            ]
-
+            ["Berani mengambil langkah pertama.", "aurelion"],
+            ["Memiliki pengetahuan yang cukup.", "corvane"],
+            ["Memiliki orang-orang yang mendukung.", "fidelis"],
+            ["Tidak menyerah sampai berhasil.", "vesperyn"]
         ]
     },
-
 
     {
         question:
             "Jika Sorting Hat memberimu pilihan untuk menentukan sendiri, kamu akan...",
 
         answers: [
-
-            [
-                "Memilih jalan yang paling berani.",
-                "aurelion"
-            ],
-
-            [
-                "Memilih jalan yang paling membuatku berkembang.",
-                "corvane"
-            ],
-
-            [
-                "Memilih tempat yang terasa seperti rumah.",
-                "fidelis"
-            ],
-
-            [
-                "Memilih jalan yang membawaku menuju tujuan terbesar.",
-                "vesperyn"
-            ]
-
+            ["Memilih jalan yang paling berani.", "aurelion"],
+            ["Memilih jalan yang paling membuatku berkembang.", "corvane"],
+            ["Memilih tempat yang terasa seperti rumah.", "fidelis"],
+            ["Memilih jalan yang membawaku menuju tujuan terbesar.", "vesperyn"]
         ]
     }
 
 ];
 
 
-
 /* ================= VARIABLES ================= */
 
 let currentQuestion = 0;
 
-
 let scores = {
-
     aurelion: 0,
-
     corvane: 0,
-
     fidelis: 0,
-
     vesperyn: 0
-
 };
-
 
 
 /* ================= ELEMENTS ================= */
@@ -484,22 +207,17 @@ let scores = {
 const startScreen =
     document.getElementById("start-screen");
 
-
 const beginButton =
     document.getElementById("begin-btn");
-
 
 const sortingResult =
     document.getElementById("sorting-result");
 
-
 const music =
     document.getElementById("sorting-music");
 
-
 const musicControl =
     document.getElementById("music-control");
-
 
 
 /* ================= START SORTING ================= */
@@ -508,40 +226,36 @@ function startSorting() {
 
     currentQuestion = 0;
 
-
     scores = {
-
         aurelion: 0,
-
         corvane: 0,
-
         fidelis: 0,
-
         vesperyn: 0
-
     };
-
 
     startScreen.style.display = "none";
 
     sortingResult.style.display = "block";
 
 
-    /* Start music after user interaction */
+    /* Music */
 
-    music.play().catch(function () {
+    if (music) {
 
-        console.log(
-            "Music membutuhkan izin browser."
-        );
+        music.play().catch(function () {
 
-    });
+            console.log(
+                "Music membutuhkan izin browser."
+            );
+
+        });
+
+    }
 
 
     showQuestion();
 
 }
-
 
 
 /* ================= SHOW QUESTION ================= */
@@ -555,7 +269,6 @@ function showQuestion() {
     sortingResult.innerHTML = `
 
         <div class="quiz-box">
-
 
             <p class="question-number">
 
@@ -576,7 +289,6 @@ function showQuestion() {
 
             <div class="answer-container">
 
-
                 ${question.answers.map(function(answer) {
 
                     return `
@@ -595,9 +307,7 @@ function showQuestion() {
 
                 }).join("")}
 
-
             </div>
-
 
         </div>
 
@@ -606,13 +316,11 @@ function showQuestion() {
 }
 
 
-
 /* ================= CHOOSE ANSWER ================= */
 
 function chooseAnswer(house) {
 
     scores[house]++;
-
 
     currentQuestion++;
 
@@ -633,7 +341,6 @@ function chooseAnswer(house) {
 }
 
 
-
 /* ================= RESULT ================= */
 
 function showResult() {
@@ -650,8 +357,9 @@ function showResult() {
         );
 
 
-    const houseData = {
+    /* ================= HOUSE DATA ================= */
 
+    const houseData = {
 
         aurelion: {
 
@@ -661,7 +369,7 @@ function showResult() {
                 "Courage • Bravery • Determination",
 
             logo:
-                "assets/logos/aurelion.png",
+                "assets/logos/Aurelion.png",
 
             description:
                 "You belong to Aurelion, the house of courage. You are not afraid to step forward when others hesitate."
@@ -677,7 +385,7 @@ function showResult() {
                 "Wisdom • Intelligence • Curiosity",
 
             logo:
-                "assets/logos/corvane.png",
+                "assets/logos/Corvane.png",
 
             description:
                 "You belong to Corvane, the house of wisdom. Your curiosity and sharp mind guide the way you see the world."
@@ -693,7 +401,7 @@ function showResult() {
                 "Loyalty • Kindness • Dedication",
 
             logo:
-                "assets/logos/fidelis.png",
+                "assets/logos/Fidelis.png",
 
             description:
                 "You belong to Fidelis, the house of loyalty. You value trust, friendship, and the people who matter to you."
@@ -709,7 +417,7 @@ function showResult() {
                 "Ambition • Cunning • Resourcefulness",
 
             logo:
-                "assets/logos/vesperyn.png",
+                "assets/logos/Vesperyn.png",
 
             description:
                 "You belong to Vesperyn, the house of ambition. You know what you want and have the determination to find your own path."
@@ -723,10 +431,13 @@ function showResult() {
         houseData[winningHouse];
 
 
-    sortingResult.innerHTML = `
+    /* ================= SORTING RESULT ================= */
 
-        <div class="sorting-result-card">
+sortingResult.innerHTML = `
 
+    <div class="sorting-result-wrapper">
+
+        <div class="sorting-label-box">
 
             <p class="sorting-label">
 
@@ -734,96 +445,112 @@ function showResult() {
 
             </p>
 
-
-            <img
-                src="${house.logo}"
-                alt="${house.name}"
-                class="sorting-house-logo"
-            >
-
-
-            <h3>
-
-                ${house.name}
-
-            </h3>
-
-
-            <p class="house-motto">
-
-                ${house.motto}
-
-            </p>
-
-
-            <p class="house-description">
-
-                ${house.description}
-
-            </p>
-
-
-            <p class="destiny-text">
-
-                ✦ YOUR DESTINY AWAITS ✦
-
-            </p>
-
-
         </div>
 
-    `;
+
+        <img
+            src="${house.logo}"
+            alt="${house.name}"
+            class="sorting-house-logo"
+        >
+
+
+        <h3>
+
+            ${house.name}
+
+        </h3>
+
+
+        <p class="house-motto">
+
+            ${house.motto}
+
+        </p>
+
+
+        <p class="house-description">
+
+            ${house.description}
+
+        </p>
+
+
+        <p class="destiny-text">
+
+            ✦ YOUR JOURNEY BEGINS ✦
+
+        </p>
+
+    </div>
+
+`;
 
 }
 
 
-
 /* ================= MUSIC CONTROL ================= */
 
-musicControl.addEventListener(
-    "click",
-    function() {
+if (musicControl && music) {
 
-        if (music.paused) {
+    musicControl.addEventListener(
+        "click",
+        function() {
 
-            music.play();
+            if (music.paused) {
 
-            musicControl.textContent = "♫";
+                music.play();
 
-        } else {
+                musicControl.textContent = "♫";
 
-            music.pause();
+            } else {
 
-            musicControl.textContent = "🔇";
+                music.pause();
+
+                musicControl.textContent = "🔇";
+
+            }
 
         }
+    );
 
-    }
-);
-
+}
 
 
 /* ================= BEGIN BUTTON ================= */
 
-beginButton.addEventListener(
-    "click",
-    function() {
+if (beginButton) {
 
-        startSorting();
+    beginButton.addEventListener(
+        "click",
+        function() {
 
-    }
-);
+            startSorting();
+
+        }
+    );
+
+}
+
+
+/* ================= HOUSE TOGGLE ================= */
+
 function toggleHouse(house) {
 
-    const allHouses = document.querySelectorAll(".house");
+    const allHouses =
+        document.querySelectorAll(".house");
 
-    allHouses.forEach(item => {
+
+    allHouses.forEach(function(item) {
 
         if (item !== house) {
+
             item.classList.remove("active");
+
         }
 
     });
+
 
     house.classList.toggle("active");
 
