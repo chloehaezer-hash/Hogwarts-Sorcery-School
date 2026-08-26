@@ -18,6 +18,11 @@ body {
     color: #f4e7c1;
 }
 
+button,
+input {
+    font-family: inherit;
+}
+
 
 /* =====================================================
    NAVBAR
@@ -172,9 +177,6 @@ body {
     position: relative;
     z-index: 10;
 
-    visibility: visible;
-    opacity: 1;
-
     object-fit: contain;
 
     filter:
@@ -234,7 +236,8 @@ body {
 .school,
 .houses,
 .sorting,
-.spells {
+.spells,
+.idc-editor-section {
     padding: 110px 8%;
 
     text-align: center;
@@ -251,7 +254,8 @@ body {
 
 .school,
 .houses,
-.spells {
+.spells,
+.idc-editor-section {
     background:
         radial-gradient(
             circle at center,
@@ -271,7 +275,8 @@ body {
 
 .school::before,
 .houses::before,
-.spells::before {
+.spells::before,
+.idc-editor-section::before {
     content: "";
 
     position: absolute;
@@ -492,8 +497,6 @@ h2 {
    HOUSE COLORS
    ===================================================== */
 
-/* AURELION */
-
 .house:nth-child(1) {
     background:
         radial-gradient(
@@ -510,8 +513,6 @@ h2 {
     color: #d8b45c;
 }
 
-
-/* CORVANE */
 
 .house:nth-child(2) {
     background:
@@ -530,8 +531,6 @@ h2 {
 }
 
 
-/* FIDELIS */
-
 .house:nth-child(3) {
     background:
         radial-gradient(
@@ -548,8 +547,6 @@ h2 {
     color: #f0c85a;
 }
 
-
-/* VESPERYN */
 
 .house:nth-child(4) {
     background:
@@ -620,7 +617,7 @@ h2 {
 
 
 /* =====================================================
-   SORTING HAT IMAGE
+   SORTING HAT
    ===================================================== */
 
 .sorting-hat-image {
@@ -730,7 +727,7 @@ h2 {
 
 
 /* =====================================================
-   QUIZ AREA
+   QUIZ
    ===================================================== */
 
 #sorting-result {
@@ -759,11 +756,6 @@ h2 {
     text-align: center;
 }
 
-
-/* =====================================================
-   QUESTION NUMBER
-   ===================================================== */
-
 .question-number {
     margin-bottom: 15px;
 
@@ -774,11 +766,6 @@ h2 {
     letter-spacing: 3px;
 }
 
-
-/* =====================================================
-   QUESTION
-   ===================================================== */
-
 .quiz-box h3 {
     margin-bottom: 30px;
 
@@ -788,11 +775,6 @@ h2 {
 
     line-height: 1.6;
 }
-
-
-/* =====================================================
-   ANSWERS
-   ===================================================== */
 
 .answer-container {
     width: 100%;
@@ -838,33 +820,39 @@ h2 {
 
 
 /* =====================================================
-   RESULT
+   SORTING RESULT
    ===================================================== */
 
-.sorting-result-card {
+.sorting-result-wrapper {
     width: 100%;
 
     max-width: 600px;
 
     margin: 0 auto;
 
-    padding: 40px 30px;
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.sorting-label-box {
+    width: 100%;
+
+    padding: 18px 20px;
+
+    margin-bottom: 30px;
 
     border: 1px solid rgba(216,180,92,0.6);
 
     background: rgba(255,255,255,0.05);
 
     text-align: center;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
 }
 
 .sorting-label {
-    margin-bottom: 20px;
+    margin: 0;
 
     color: #d8b45c;
 
@@ -872,45 +860,22 @@ h2 {
 
     letter-spacing: 3px;
 
-    text-align: center;
-}
-
-.sorting-result-card .sorting-hat-image {
-    width: 100%;
-
-    margin: 0 auto 15px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-}
-
-.sorting-result-card .sorting-hat-image img {
-    width: min(230px, 65vw);
-
-    height: auto;
-
-    max-height: 250px;
-
-    display: block;
-
-    margin: 0 auto;
+    line-height: 1.6;
 }
 
 .sorting-house-logo {
     width: 180px;
+
     height: 180px;
 
     object-fit: contain;
 
-    margin: 5px auto 20px;
+    margin: 10px auto 20px;
 
     display: block;
 }
 
-.sorting-result-card h3 {
+.sorting-result-wrapper h3 {
     margin-bottom: 10px;
 
     color: #d8b45c;
@@ -944,6 +909,327 @@ h2 {
     color: #d8b45c;
 
     font-size: 14px;
+
+    margin-top: 25px;
+}
+
+
+/* =====================================================
+   IDC EDITOR
+   ===================================================== */
+
+.idc-editor-section {
+    display: none;
+
+    min-height: 850px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #172e50 0%,
+            #0d2343 45%,
+            #07162c 90%
+        );
+}
+
+.idc-editor-container {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+.idc-editor-heading {
+    margin-bottom: 45px;
+}
+
+.idc-editor-label {
+    margin-bottom: 10px;
+
+    color: #d8b45c;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.idc-editor-heading h2 {
+    margin-bottom: 12px;
+
+    color: #d8b45c;
+
+    font-size: 40px;
+}
+
+.idc-editor-heading > p:last-child {
+    color: #d8dce3;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   IDC GRID
+   ===================================================== */
+
+.idc-editor-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+
+    gap: 50px;
+
+    align-items: start;
+}
+
+
+/* =====================================================
+   IDC PREVIEW
+   ===================================================== */
+
+.idc-preview-area {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.idc-preview-title {
+    margin-bottom: 15px;
+
+    color: #d8b45c;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.idc-canvas-wrapper {
+    width: 100%;
+
+    max-width: 750px;
+
+    padding: 15px;
+
+    border: 1px solid rgba(216,180,92,0.5);
+
+    background: rgba(0,0,0,0.25);
+
+    overflow: hidden;
+}
+
+#idc-canvas {
+    width: 100%;
+
+    height: auto;
+
+    display: block;
+
+    cursor: grab;
+
+    user-select: none;
+}
+
+#idc-canvas:active {
+    cursor: grabbing;
+}
+
+
+/* =====================================================
+   IDC CONTROLS
+   ===================================================== */
+
+.idc-controls {
+    width: 100%;
+
+    padding: 30px;
+
+    border: 1px solid rgba(216,180,92,0.5);
+
+    background: rgba(255,255,255,0.05);
+
+    text-align: left;
+}
+
+.idc-control-box {
+    margin-bottom: 25px;
+}
+
+.idc-control-box label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #d8b45c;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+.idc-control-box input[type="text"] {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid rgba(216,180,92,0.5);
+
+    outline: none;
+
+    background: rgba(7,22,44,0.75);
+
+    color: #f4e7c1;
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+.idc-control-box input[type="text"]:focus {
+    border-color: #d8b45c;
+}
+
+.idc-control-box input[type="file"] {
+    width: 100%;
+
+    color: #d8dce3;
+
+    font-family: inherit;
+
+    font-size: 12px;
+}
+
+.idc-control-box input[type="range"] {
+    width: 100%;
+
+    cursor: pointer;
+}
+
+.idc-help {
+    color: #d8dce3;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   IDC BUTTONS
+   ===================================================== */
+
+.idc-editor-buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+.idc-primary-button,
+.idc-secondary-button {
+    width: 100%;
+
+    padding: 14px 18px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    transition: 0.3s;
+}
+
+.idc-primary-button {
+    border: 1px solid #d8b45c;
+
+    background: #d8b45c;
+
+    color: #07162c;
+}
+
+.idc-primary-button:hover {
+    background: #f4e7c1;
+
+    border-color: #f4e7c1;
+}
+
+.idc-secondary-button {
+    border: 1px solid rgba(216,180,92,0.6);
+
+    background: transparent;
+
+    color: #f4e7c1;
+}
+
+.idc-secondary-button:hover {
+    background: rgba(216,180,92,0.15);
+}
+
+.idc-status {
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    color: #d8b45c;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   IDC CREATE BUTTON
+   ===================================================== */
+
+.create-idc-button {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 14px 28px;
+
+    border: 1px solid #d8b45c;
+
+    background: transparent;
+
+    color: #f4e7c1;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.create-idc-button:hover {
+    background: #d8b45c;
+
+    color: #07162c;
 }
 
 
@@ -1138,58 +1424,26 @@ footer small {
         padding: 30px 25px;
     }
 
+    .idc-editor-grid {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .idc-controls {
+        max-width: 750px;
+
+        margin: 0 auto;
+    }
+
 }
 
 
 /* =====================================================
    PHONE
    ===================================================== */
-.sorting-result-wrapper {
-    width: 100%;
 
-    padding: 0 5px;
-}
-
-.sorting-label-box {
-    padding: 15px 12px;
-
-    margin-bottom: 25px;
-}
-
-.sorting-label {
-    font-size: 10px;
-
-    letter-spacing: 2px;
-}
-
-.sorting-result-wrapper h3 {
-    font-size: 30px;
-}
-
-.sorting-house-logo {
-    width: 150px;
-
-    height: 150px;
-}
-
-.house-motto {
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-.house-description {
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-.destiny-text {
-    font-size: 12px;
-}
-
-
-    /* ---------- HERO ---------- */
+@media (max-width: 600px) {
 
     .hero {
         min-height: 100svh;
@@ -1197,16 +1451,8 @@ footer small {
         padding: 125px 20px 60px;
     }
 
-    .hero-content {
-        width: 100%;
-    }
-
     .hero-logo {
         width: min(280px, 80vw);
-
-        max-width: 100%;
-
-        height: auto;
 
         margin-bottom: 18px;
     }
@@ -1236,20 +1482,21 @@ footer small {
     }
 
 
-    /* ---------- SECTIONS ---------- */
-
     .school,
     .houses,
     .sorting,
-    .spells {
+    .spells,
+    .idc-editor-section {
         padding: 90px 18px;
     }
+
 
     h2 {
         font-size: 30px;
 
         line-height: 1.3;
     }
+
 
     .school p,
     .spells p {
@@ -1258,14 +1505,13 @@ footer small {
         line-height: 1.8;
     }
 
+
     .section-intro {
         margin-bottom: 30px;
 
         font-size: 13px;
     }
 
-
-    /* ---------- HOUSES ---------- */
 
     .house-container {
         width: 100%;
@@ -1277,6 +1523,7 @@ footer small {
         gap: 18px;
     }
 
+
     .house {
         width: 100%;
 
@@ -1285,15 +1532,18 @@ footer small {
         padding: 25px 18px;
     }
 
+
     .house-logo {
         width: 150px;
 
         height: 150px;
     }
 
+
     .house h3 {
         font-size: 23px;
     }
+
 
     .house p {
         font-size: 13px;
@@ -1302,37 +1552,17 @@ footer small {
     }
 
 
-    /* ---------- SORTING HAT ---------- */
-
     .sorting {
         min-height: 650px;
     }
 
-    .sorting-hat-image {
-        width: 100%;
-
-        margin: 0 auto 20px;
-
-        display: flex;
-
-        justify-content: center;
-
-        align-items: center;
-    }
 
     .sorting-hat-image img {
         width: min(210px, 65vw);
 
         max-height: 230px;
-
-        margin: 0 auto;
     }
 
-    #start-screen {
-        width: 100%;
-
-        padding: 0 5px;
-    }
 
     #start-screen h1 {
         font-size: 40px;
@@ -1340,11 +1570,13 @@ footer small {
         line-height: 1.2;
     }
 
+
     #start-screen p {
         font-size: 15px;
 
         line-height: 1.6;
     }
+
 
     .sorting-start-button {
         padding: 13px 22px;
@@ -1352,21 +1584,18 @@ footer small {
         font-size: 11px;
     }
 
-    #sorting-result {
-        width: 100%;
-    }
 
     .quiz-box {
-        width: 100%;
-
         padding: 25px 18px;
     }
+
 
     .quiz-box h3 {
         font-size: 18px;
 
         line-height: 1.5;
     }
+
 
     .answer-button {
         padding: 13px 14px;
@@ -1376,128 +1605,98 @@ footer small {
         line-height: 1.5;
     }
 
-   /* =====================================================
-   SORTING RESULT
-   ===================================================== */
 
-.sorting-result-wrapper {
-    width: 100%;
-
-    max-width: 600px;
-
-    margin: 0 auto;
-
-    text-align: center;
-
-    position: relative;
-
-    z-index: 2;
-}
+    .sorting-result-wrapper {
+        width: 100%;
+    }
 
 
-/* ================= SORTING LABEL BOX ================= */
+    .sorting-label-box {
+        padding: 15px 12px;
 
-.sorting-label-box {
-    width: 100%;
-
-    padding: 18px 20px;
-
-    margin-bottom: 30px;
-
-    border: 1px solid rgba(216,180,92,0.6);
-
-    background: rgba(255,255,255,0.05);
-
-    text-align: center;
-}
+        margin-bottom: 25px;
+    }
 
 
-.sorting-label {
-    margin: 0;
+    .sorting-label {
+        font-size: 10px;
 
-    color: #d8b45c;
-
-    font-size: 12px;
-
-    letter-spacing: 3px;
-
-    line-height: 1.6;
-}
+        letter-spacing: 2px;
+    }
 
 
-/* ================= HOUSE LOGO ================= */
-
-.sorting-house-logo {
-    width: 180px;
-
-    height: 180px;
-
-    object-fit: contain;
-
-    margin: 10px auto 20px;
-
-    display: block;
-}
+    .sorting-result-wrapper h3 {
+        font-size: 30px;
+    }
 
 
-/* ================= HOUSE NAME ================= */
+    .sorting-house-logo {
+        width: 150px;
 
-.sorting-result-wrapper h3 {
-    margin-bottom: 10px;
-
-    color: #d8b45c;
-
-    font-size: 34px;
-}
+        height: 150px;
+    }
 
 
-/* ================= MOTTO ================= */
+    .house-motto {
+        font-size: 12px;
 
-.house-motto {
-    margin-bottom: 20px;
-
-    color: #f4e7c1;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-}
+        line-height: 1.6;
+    }
 
 
-/* ================= DESCRIPTION ================= */
+    .house-description {
+        font-size: 13px;
 
-.house-description {
-    max-width: 480px;
-
-    margin: 0 auto 25px;
-
-    color: #d8dce3;
-
-    font-size: 15px;
-
-    line-height: 1.8;
-}
+        line-height: 1.7;
+    }
 
 
-/* ================= DESTINY ================= */
+    .destiny-text {
+        font-size: 12px;
+    }
 
-.destiny-text {
-    color: #d8b45c;
 
-    font-size: 14px;
+    .idc-editor-heading h2 {
+        font-size: 30px;
+    }
 
-    margin-top: 25px;
-}
 
-    /* ---------- FOOTER ---------- */
+    .idc-editor-heading > p:last-child {
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+
+    .idc-canvas-wrapper {
+        padding: 8px;
+    }
+
+
+    .idc-controls {
+        padding: 22px 18px;
+    }
+
+
+    .idc-editor-buttons {
+        gap: 10px;
+    }
+
+
+    .patent-content {
+        padding: 25px 18px;
+    }
+
 
     footer {
         padding: 40px 18px;
     }
 
+
     .footer-logo {
         width: 80px;
     }
+
 
     footer p {
         font-size: 13px;
@@ -1505,12 +1704,11 @@ footer small {
         line-height: 1.6;
     }
 
+
     footer small {
         font-size: 11px;
     }
 
-
-    /* ---------- MUSIC ---------- */
 
     .music-control {
         right: 15px;
@@ -1520,6 +1718,55 @@ footer small {
         width: 42px;
 
         height: 42px;
+    }
+
+}
+/* =====================================================
+   IDC VISIBILITY
+   ===================================================== */
+
+.idc-editor-section.show {
+    display: block;
+    animation: idcReveal 0.8s ease;
+}
+
+@keyframes idcReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =====================================================
+   MOBILE NAVBAR
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        min-height: 70px;
+        padding: 8px 14px;
+    }
+
+    .nav-logo img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .nav-links {
+        gap: 8px;
+        max-width: 75%;
+    }
+
+    .nav-links a {
+        font-size: 8px;
+        letter-spacing: 1px;
     }
 
 }

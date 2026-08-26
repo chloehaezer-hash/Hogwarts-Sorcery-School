@@ -91,8 +91,11 @@
             <a
                 href="#school"
                 class="enter-button"
+                id="enter-academy"
             >
+
                 ENTER THE ACADEMY
+
             </a>
 
         </div>
@@ -168,11 +171,10 @@
         </p>
 
 
-
         <div class="house-container">
 
 
-            <!-- ================= AURELION ================= -->
+            <!-- AURELION -->
 
             <div
                 class="house"
@@ -185,11 +187,9 @@
                     class="house-logo"
                 >
 
-
                 <h3>
                     Aurelion
                 </h3>
-
 
                 <p>
                     Courage, bravery,
@@ -217,7 +217,7 @@
 
 
 
-            <!-- ================= CORVANE ================= -->
+            <!-- CORVANE -->
 
             <div
                 class="house"
@@ -230,11 +230,9 @@
                     class="house-logo"
                 >
 
-
                 <h3>
                     Corvane
                 </h3>
-
 
                 <p>
                     Wisdom, intelligence,
@@ -262,7 +260,7 @@
 
 
 
-            <!-- ================= FIDELIS ================= -->
+            <!-- FIDELIS -->
 
             <div
                 class="house"
@@ -275,11 +273,9 @@
                     class="house-logo"
                 >
 
-
                 <h3>
                     Fidelis
                 </h3>
-
 
                 <p>
                     Loyalty, kindness,
@@ -307,7 +303,7 @@
 
 
 
-            <!-- ================= VESPERYN ================= -->
+            <!-- VESPERYN -->
 
             <div
                 class="house"
@@ -320,11 +316,9 @@
                     class="house-logo"
                 >
 
-
                 <h3>
                     Vesperyn
                 </h3>
-
 
                 <p>
                     Ambition, cunning,
@@ -366,9 +360,6 @@
         id="sorting"
     >
 
-
-        <!-- ================= SORTING HAT IMAGE ================= -->
-
         <div class="sorting-hat-image">
 
             <img
@@ -379,8 +370,7 @@
         </div>
 
 
-
-        <!-- ================= START SCREEN ================= -->
+        <!-- START SCREEN -->
 
         <div id="start-screen">
 
@@ -407,11 +397,204 @@
         </div>
 
 
-
-        <!-- ================= QUIZ RESULT ================= -->
+        <!-- QUIZ / RESULT -->
 
         <div id="sorting-result"></div>
 
+    </section>
+
+
+
+    <!-- =====================================================
+         IDC EDITOR
+         ===================================================== -->
+
+    <section
+        class="idc-editor-section"
+        id="idc-editor"
+    >
+
+        <div class="idc-editor-container">
+
+
+            <div class="idc-editor-heading">
+
+                <p class="idc-editor-label">
+                    HOGWARTS SORCERY SCHOOL
+                </p>
+
+                <h2>
+                    ID CARD EDITOR
+                </h2>
+
+                <p>
+                    Create your official student identification card.
+                </p>
+
+            </div>
+
+
+
+            <!-- IDC GRID -->
+
+            <div class="idc-editor-grid">
+
+
+                <!-- PREVIEW -->
+
+                <div class="idc-preview-area">
+
+                    <div class="idc-preview-title">
+                        PREVIEW
+                    </div>
+
+
+                    <div
+                        class="idc-canvas-wrapper"
+                        id="idc-canvas-wrapper"
+                    >
+
+                        <canvas
+                            id="idc-canvas"
+                            width="939"
+                            height="613"
+                        ></canvas>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONTROLS -->
+
+                <div class="idc-controls">
+
+
+                    <!-- STUDENT NAME -->
+
+                    <div class="idc-control-box">
+
+                        <label for="student-name">
+                            STUDENT NAME
+                        </label>
+
+                        <input
+                            type="text"
+                            id="student-name"
+                            placeholder="Enter your name"
+                            maxlength="40"
+                        >
+
+                    </div>
+
+
+
+                    <!-- PHOTO -->
+
+                    <div class="idc-control-box">
+
+                        <label for="student-photo">
+                            STUDENT PHOTO
+                        </label>
+
+                        <input
+                            type="file"
+                            id="student-photo"
+                            accept="image/png,image/jpeg,image/webp"
+                        >
+
+                    </div>
+
+
+
+                    <!-- PHOTO SIZE -->
+
+                    <div class="idc-control-box">
+
+                        <label for="photo-scale">
+                            PHOTO SIZE
+                        </label>
+
+                        <input
+                            type="range"
+                            id="photo-scale"
+                            min="0.3"
+                            max="2"
+                            step="0.01"
+                            value="1"
+                        >
+
+                    </div>
+
+
+
+                    <!-- PHOTO POSITION -->
+
+                    <div class="idc-control-box">
+
+                        <label>
+                            PHOTO POSITION
+                        </label>
+
+                        <p class="idc-help">
+                            Drag the photo directly on the preview.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="idc-editor-buttons">
+
+                        <button
+                            type="button"
+                            id="reset-photo"
+                            class="idc-secondary-button"
+                        >
+
+                            RESET PHOTO
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="generate-idc"
+                            class="idc-primary-button"
+                        >
+
+                            GENERATE IDC
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="download-idc"
+                            class="idc-primary-button"
+                        >
+
+                            DOWNLOAD IDC
+
+                        </button>
+
+                    </div>
+
+
+                    <p
+                        id="idc-status"
+                        class="idc-status"
+                    ></p>
+
+
+                </div>
+
+            </div>
+
+        </div>
 
     </section>
 
@@ -504,11 +687,9 @@
             </p>
 
 
-
             <div class="patent-divider">
                 ✦
             </div>
-
 
 
             <p class="copyright">
@@ -538,7 +719,6 @@
 
     <footer>
 
-
         <img
             src="assets/logos/HOWSORCS%20LOGO.png"
             alt="HOWSORCS LOGO"
@@ -554,7 +734,6 @@
         <small>
             Where magic begins.
         </small>
-
 
     </footer>
 
