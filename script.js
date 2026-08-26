@@ -1,162 +1,313 @@
 /* =====================================================
    HOWSORCS — MAIN JAVASCRIPT
-   SORTING HAT + IDC EDITOR + MUSIC + HOUSE
+   SORTING HAT + IDC EDITOR
    ===================================================== */
 
 
 /* =====================================================
-   SORTING HAT — QUESTIONS
+   SORTING HAT — QUESTION BANK
+   30 QUESTIONS AVAILABLE, ONLY 15 RANDOMLY SELECTED
    ===================================================== */
 
 const questions = [
 
     {
-        question: "Ketika menghadapi masalah besar, apa yang paling mungkin kamu lakukan?",
+        question: "Kamu tiba lebih awal di sebuah tempat yang belum pernah kamu kunjungi. Apa yang pertama kali menarik perhatianmu?",
         answers: [
-            ["Menghadapinya langsung meskipun berisiko.", "aurelion"],
-            ["Mencari tahu semua informasi sebelum bertindak.", "corvane"],
-            ["Memastikan orang-orang di sekitarku tetap aman.", "fidelis"],
-            ["Mencari cara paling menguntungkan untuk keluar dari masalah.", "vesperyn"]
+            ["Bagian yang paling menantang untuk dijelajahi.", "aurelion"],
+            ["Detail-detail unik yang membuatku penasaran.", "corvane"],
+            ["Orang-orang dan suasana di sekitarku.", "fidelis"],
+            ["Kesempatan atau kemungkinan yang bisa kutemukan di sana.", "vesperyn"]
         ]
     },
 
     {
-        question: "Apa yang paling kamu hargai dari seorang teman?",
+        question: "Dalam sebuah proyek kelompok, hal apa yang menurutmu paling penting?",
         answers: [
-            ["Keberaniannya.", "aurelion"],
-            ["Kecerdasannya.", "corvane"],
-            ["Kesetiaannya.", "fidelis"],
-            ["Ambisinya.", "vesperyn"]
+            ["Berani mengambil tindakan ketika dibutuhkan.", "aurelion"],
+            ["Memiliki rencana dan ide yang matang.", "corvane"],
+            ["Memastikan semua anggota merasa dilibatkan.", "fidelis"],
+            ["Menentukan strategi agar tujuan tercapai.", "vesperyn"]
         ]
     },
 
     {
-        question: "Jika kamu menemukan rahasia besar di sekolah, kamu akan...",
+        question: "Jika kamu diberi satu hari tanpa aturan, kamu lebih tertarik untuk...",
         answers: [
-            ["Mencari tahu kebenarannya sendiri.", "aurelion"],
-            ["Mempelajarinya secara mendalam.", "corvane"],
-            ["Memastikan rahasia itu tidak membahayakan orang lain.", "fidelis"],
-            ["Memanfaatkannya sebagai keuntungan.", "vesperyn"]
+            ["Melakukan sesuatu yang belum pernah berani kulakukan.", "aurelion"],
+            ["Mencoba mempelajari hal baru sepanjang hari.", "corvane"],
+            ["Menghabiskan waktu bersama orang-orang terdekat.", "fidelis"],
+            ["Mengejar sesuatu yang selama ini kuinginkan.", "vesperyn"]
         ]
     },
 
     {
-        question: "Mana yang paling menggambarkan dirimu?",
+        question: "Saat menghadapi situasi yang tidak pasti, kamu biasanya...",
         answers: [
-            ["Berani.", "aurelion"],
-            ["Penasaran.", "corvane"],
-            ["Peduli.", "fidelis"],
-            ["Ambisius.", "vesperyn"]
+            ["Mengikuti insting dan bergerak maju.", "aurelion"],
+            ["Mengumpulkan informasi terlebih dahulu.", "corvane"],
+            ["Mencari orang yang bisa kupercaya.", "fidelis"],
+            ["Mencari posisi terbaik sebelum mengambil langkah.", "vesperyn"]
         ]
     },
 
     {
-        question: "Saat melihat seseorang diperlakukan tidak adil, kamu...",
+        question: "Seseorang meminta bantuanmu di saat kamu sedang sibuk. Apa yang paling mungkin kamu lakukan?",
         answers: [
-            ["Langsung membelanya.", "aurelion"],
-            ["Mencari tahu apa yang sebenarnya terjadi.", "corvane"],
-            ["Menemaninya dan memastikan dia baik-baik saja.", "fidelis"],
-            ["Mencari cara agar situasinya berubah.", "vesperyn"]
+            ["Langsung membantu jika situasinya mendesak.", "aurelion"],
+            ["Mencari solusi paling efektif untuk masalahnya.", "corvane"],
+            ["Meluangkan waktu karena aku tidak ingin mengecewakannya.", "fidelis"],
+            ["Membantu jika aku bisa mengatur semuanya dengan baik.", "vesperyn"]
         ]
     },
 
     {
-        question: "Kalau diberi kesempatan mempelajari satu hal, kamu memilih...",
+        question: "Mana yang lebih membuatmu puas setelah menyelesaikan sesuatu?",
         answers: [
-            ["Ilmu pertarungan sihir.", "aurelion"],
-            ["Sihir kuno dan sejarahnya.", "corvane"],
-            ["Ramuan penyembuhan.", "fidelis"],
-            ["Sihir yang dapat mengubah keadaan.", "vesperyn"]
+            ["Aku berhasil melewati tantangan yang sulit.", "aurelion"],
+            ["Aku akhirnya memahami sesuatu yang rumit.", "corvane"],
+            ["Aku tahu hasilnya membawa manfaat bagi orang lain.", "fidelis"],
+            ["Aku berhasil mencapai tujuan yang sudah kutetapkan.", "vesperyn"]
         ]
     },
 
     {
-        question: "Apa yang paling membuatmu bangga?",
+        question: "Jika menemukan pintu misterius yang tidak diketahui siapa pun, kamu akan...",
         answers: [
-            ["Berhasil melakukan sesuatu yang sebelumnya kutakuti.", "aurelion"],
-            ["Berhasil memahami sesuatu yang sulit.", "corvane"],
-            ["Berhasil membantu seseorang.", "fidelis"],
-            ["Berhasil mencapai targetku.", "vesperyn"]
+            ["Membukanya dan melihat apa yang ada di baliknya.", "aurelion"],
+            ["Mencari tahu dulu bagaimana pintu itu bekerja.", "corvane"],
+            ["Mengajak seseorang agar tidak menjelajah sendirian.", "fidelis"],
+            ["Memastikan apa keuntungan atau risiko di baliknya.", "vesperyn"]
         ]
     },
 
     {
-        question: "Ketika berada dalam kelompok, kamu biasanya...",
+        question: "Saat seseorang meragukan kemampuanmu, reaksimu biasanya...",
         answers: [
-            ["Menjadi orang yang maju terlebih dahulu.", "aurelion"],
-            ["Memberikan ide dan strategi.", "corvane"],
-            ["Menjaga agar semua orang tetap kompak.", "fidelis"],
-            ["Mengatur langkah agar tujuan tercapai.", "vesperyn"]
+            ["Membuktikan bahwa aku bisa.", "aurelion"],
+            ["Menunjukkan hasil lewat kemampuan dan pengetahuan.", "corvane"],
+            ["Tidak terlalu memikirkannya selama orang terdekatku percaya padaku.", "fidelis"],
+            ["Menjadikannya motivasi untuk mencapai sesuatu yang lebih besar.", "vesperyn"]
         ]
     },
 
     {
-        question: "Kalau rencanamu gagal, apa yang kamu lakukan?",
+        question: "Dalam sebuah cerita petualangan, kamu paling tertarik menjadi...",
         answers: [
-            ["Coba lagi dengan lebih berani.", "aurelion"],
-            ["Menganalisis kesalahannya.", "corvane"],
-            ["Meminta bantuan orang yang dipercaya.", "fidelis"],
-            ["Membuat strategi baru.", "vesperyn"]
+            ["Orang yang maju menghadapi bahaya.", "aurelion"],
+            ["Pemecah teka-teki dan pencari rahasia.", "corvane"],
+            ["Sahabat yang selalu menjaga kelompok tetap bersama.", "fidelis"],
+            ["Perencana yang menentukan langkah berikutnya.", "vesperyn"]
         ]
     },
 
     {
-        question: "Mana yang paling kamu takutkan?",
+        question: "Kamu mendapat kabar bahwa rencanamu harus berubah mendadak. Apa yang kamu lakukan?",
         answers: [
-            ["Menjadi pengecut.", "aurelion"],
-            ["Kehilangan kesempatan untuk belajar.", "corvane"],
-            ["Kehilangan orang-orang yang kusayangi.", "fidelis"],
-            ["Gagal mencapai sesuatu yang kuinginkan.", "vesperyn"]
+            ["Menyesuaikan diri dan langsung mengambil tindakan.", "aurelion"],
+            ["Mencari tahu penyebab perubahan sebelum menentukan langkah.", "corvane"],
+            ["Memastikan perubahan itu tidak menyulitkan orang lain.", "fidelis"],
+            ["Membuat rencana baru yang tetap mengarah pada tujuan.", "vesperyn"]
         ]
     },
 
     {
-        question: "Jika kamu memiliki kekuatan besar, kamu akan...",
+        question: "Teman-temanmu sedang berdebat dan tidak menemukan jalan keluar. Kamu cenderung...",
         answers: [
-            ["Menggunakannya untuk melindungi orang lain.", "aurelion"],
-            ["Mempelajari batas dan cara kerjanya.", "corvane"],
-            ["Menggunakannya untuk membantu orang-orang terdekat.", "fidelis"],
-            ["Menggunakannya untuk mengubah hidupku.", "vesperyn"]
+            ["Mengatakan dengan jujur apa yang menurutku harus dilakukan.", "aurelion"],
+            ["Membantu melihat masalah dari sudut pandang lain.", "corvane"],
+            ["Mencoba menenangkan semua orang.", "fidelis"],
+            ["Mencari keputusan yang paling menguntungkan bagi kelompok.", "vesperyn"]
         ]
     },
 
     {
-        question: "Orang-orang biasanya mengenalmu sebagai seseorang yang...",
+        question: "Apa yang paling mungkin membuatmu tetap berusaha ketika sesuatu terasa sulit?",
         answers: [
-            ["Berani dan blak-blakan.", "aurelion"],
-            ["Banyak berpikir dan bertanya.", "corvane"],
-            ["Bisa diandalkan.", "fidelis"],
-            ["Punya tujuan yang jelas.", "vesperyn"]
+            ["Keinginan untuk tidak mundur.", "aurelion"],
+            ["Keinginan untuk menemukan jawabannya.", "corvane"],
+            ["Orang-orang yang mengandalkanku.", "fidelis"],
+            ["Bayangan tentang tujuan yang ingin kucapai.", "vesperyn"]
         ]
     },
 
     {
-        question: "Jika harus memilih satu sifat untuk diperkuat, kamu memilih...",
+        question: "Jika kamu memiliki sebuah kemampuan langka, kamu akan paling ingin...",
         answers: [
-            ["Keberanian.", "aurelion"],
-            ["Kebijaksanaan.", "corvane"],
-            ["Kesetiaan.", "fidelis"],
-            ["Ambisi.", "vesperyn"]
+            ["Menggunakannya saat seseorang membutuhkan perlindungan.", "aurelion"],
+            ["Memahami sepenuhnya bagaimana kemampuan itu bekerja.", "corvane"],
+            ["Menggunakannya untuk membantu orang-orang di sekitarku.", "fidelis"],
+            ["Mengembangkannya menjadi sesuatu yang bisa membawaku lebih jauh.", "vesperyn"]
         ]
     },
 
     {
-        question: "Apa yang paling penting ketika mengejar impian?",
+        question: "Kamu diberi tugas yang sangat sulit. Langkah pertamamu adalah...",
         answers: [
-            ["Berani mengambil langkah pertama.", "aurelion"],
-            ["Memiliki pengetahuan yang cukup.", "corvane"],
-            ["Memiliki orang-orang yang mendukung.", "fidelis"],
-            ["Tidak menyerah sampai berhasil.", "vesperyn"]
+            ["Mulai saja dan hadapi tantangannya di sepanjang jalan.", "aurelion"],
+            ["Membaca dan memahami semuanya terlebih dahulu.", "corvane"],
+            ["Berdiskusi dengan orang yang bisa bekerja sama denganku.", "fidelis"],
+            ["Menyusun strategi agar usahaku tidak sia-sia.", "vesperyn"]
         ]
     },
 
     {
-        question: "Jika Sorting Hat memberimu pilihan untuk menentukan sendiri, kamu akan...",
+        question: "Apa yang paling kamu perhatikan ketika bertemu orang baru?",
         answers: [
-            ["Memilih jalan yang paling berani.", "aurelion"],
-            ["Memilih jalan yang paling membuatku berkembang.", "corvane"],
-            ["Memilih tempat yang terasa seperti rumah.", "fidelis"],
-            ["Memilih jalan yang membawaku menuju tujuan terbesar.", "vesperyn"]
+            ["Cara mereka membawa diri.", "aurelion"],
+            ["Cara mereka berpikir dan berbicara.", "corvane"],
+            ["Bagaimana mereka memperlakukan orang lain.", "fidelis"],
+            ["Apa yang ingin mereka capai.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Jika harus memilih tempat untuk tinggal, kamu memilih tempat yang...",
+        answers: [
+            ["Penuh tantangan dan petualangan.", "aurelion"],
+            ["Memiliki banyak hal untuk dipelajari.", "corvane"],
+            ["Terasa hangat dan nyaman.", "fidelis"],
+            ["Memberikan banyak peluang untuk berkembang.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Ketika kamu membuat kesalahan, kamu biasanya...",
+        answers: [
+            ["Mengakuinya dan mencoba memperbaikinya.", "aurelion"],
+            ["Mencari tahu kenapa kesalahan itu terjadi.", "corvane"],
+            ["Memikirkan dampaknya terhadap orang lain.", "fidelis"],
+            ["Belajar darinya agar langkah berikutnya lebih baik.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Apa yang paling membuat sebuah perjalanan terasa berharga?",
+        answers: [
+            ["Tantangan yang berhasil kulewati.", "aurelion"],
+            ["Hal-hal baru yang kupelajari.", "corvane"],
+            ["Orang-orang yang berbagi perjalanan denganku.", "fidelis"],
+            ["Seberapa jauh perjalanan itu membawaku menuju tujuan.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Jika kamu menemukan cara yang lebih mudah untuk mencapai tujuan, kamu...",
+        answers: [
+            ["Tetap memilih cara yang menurutku benar meski lebih sulit.", "aurelion"],
+            ["Membandingkan kedua cara sebelum memilih.", "corvane"],
+            ["Memilih cara yang paling aman bagi semua orang.", "fidelis"],
+            ["Menggunakan cara yang paling efektif.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Saat memiliki waktu luang, kamu lebih senang...",
+        answers: [
+            ["Mencoba aktivitas baru.", "aurelion"],
+            ["Membaca, menonton, atau mempelajari sesuatu.", "corvane"],
+            ["Mengobrol atau berkumpul bersama orang terdekat.", "fidelis"],
+            ["Mengerjakan sesuatu yang bisa mengembangkan diriku.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Kamu menemukan sebuah masalah yang belum pernah dialami orang lain. Kamu akan...",
+        answers: [
+            ["Menjadi orang pertama yang mencoba menyelesaikannya.", "aurelion"],
+            ["Mencari pola dan kemungkinan penyebabnya.", "corvane"],
+            ["Mencari cara agar tidak ada yang harus menghadapinya sendirian.", "fidelis"],
+            ["Melihat masalah itu sebagai kesempatan untuk menemukan solusi baru.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Jika harus memilih satu hal untuk diwariskan kepada orang lain, kamu memilih...",
+        answers: [
+            ["Keberanian untuk mencoba.", "aurelion"],
+            ["Pengetahuan yang berguna.", "corvane"],
+            ["Kenangan dan hubungan yang berarti.", "fidelis"],
+            ["Semangat untuk mengejar impian.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Ketika berada di tempat yang asing, kamu merasa paling nyaman jika...",
+        answers: [
+            ["Aku bisa bebas menjelajah.", "aurelion"],
+            ["Aku memahami lingkungan di sekitarku.", "corvane"],
+            ["Ada seseorang yang kukenal bersamaku.", "fidelis"],
+            ["Aku tahu apa yang bisa kulakukan untuk menyesuaikan diri.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Apa arti keberhasilan bagimu?",
+        answers: [
+            ["Berani melakukan sesuatu yang sebelumnya terasa mustahil.", "aurelion"],
+            ["Berhasil berkembang dan memahami lebih banyak hal.", "corvane"],
+            ["Mencapai sesuatu tanpa kehilangan orang-orang penting.", "fidelis"],
+            ["Mewujudkan tujuan yang benar-benar kuinginkan.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Jika kamu diberi kesempatan memimpin sesuatu, kamu akan...",
+        answers: [
+            ["Menjadi orang yang berani mengambil keputusan.", "aurelion"],
+            ["Membawa ide dan arah yang jelas.", "corvane"],
+            ["Memastikan semua orang merasa didengar.", "fidelis"],
+            ["Mengatur langkah agar hasil terbaik bisa tercapai.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Saat melihat kesempatan yang tidak datang dua kali, kamu...",
+        answers: [
+            ["Mengambilnya meskipun sedikit menakutkan.", "aurelion"],
+            ["Memikirkan semua kemungkinan terlebih dahulu.", "corvane"],
+            ["Mempertimbangkan apakah keputusan itu berdampak pada orang lain.", "fidelis"],
+            ["Menilai bagaimana kesempatan itu bisa membawaku lebih dekat ke tujuan.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Dalam sebuah kompetisi, hal yang paling penting bagimu adalah...",
+        answers: [
+            ["Memberikan usaha terbaik tanpa takut kalah.", "aurelion"],
+            ["Memahami permainan dan menemukan cara terbaik untuk bermain.", "corvane"],
+            ["Menjaga rasa hormat terhadap semua orang.", "fidelis"],
+            ["Mencapai posisi terbaik yang bisa kuraih.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Jika temanmu sedang kehilangan kepercayaan diri, kamu kemungkinan akan...",
+        answers: [
+            ["Menyemangatinya untuk berani mencoba lagi.", "aurelion"],
+            ["Membantunya melihat kemampuan yang sebenarnya ia miliki.", "corvane"],
+            ["Menemaninya dan mengingatkannya bahwa dia tidak sendirian.", "fidelis"],
+            ["Membantunya membuat langkah baru untuk bangkit.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Apa yang paling membuatmu tertarik pada sebuah misteri?",
+        answers: [
+            ["Tantangan untuk menghadapi hal yang tidak diketahui.", "aurelion"],
+            ["Keinginan untuk menemukan jawabannya.", "corvane"],
+            ["Cerita dan orang-orang yang terlibat di dalamnya.", "fidelis"],
+            ["Kemungkinan menemukan sesuatu yang berharga.", "vesperyn"]
+        ]
+    },
+
+    {
+        question: "Ketika membayangkan masa depan, kamu lebih sering memikirkan...",
+        answers: [
+            ["Petualangan yang ingin kualami.", "aurelion"],
+            ["Hal-hal yang ingin kupelajari.", "corvane"],
+            ["Orang-orang yang ingin tetap bersamaku.", "fidelis"],
+            ["Pencapaian yang ingin kuraih.", "vesperyn"]
         ]
     }
 
@@ -164,8 +315,12 @@ const questions = [
 
 
 /* =====================================================
-   SORTING VARIABLES
+   QUIZ VARIABLES
    ===================================================== */
+
+const QUESTIONS_TO_SHOW = 15;
+
+let activeQuestions = [];
 
 let currentQuestion = 0;
 
@@ -187,32 +342,40 @@ const houseData = {
 
     aurelion: {
         name: "Aurelion",
+        code: "AUR",
         motto: "Courage • Bravery • Determination",
         logo: "assets/logos/Aurelion.png",
+        colors: ["#4a1010", "#8b2b2b", "#2a0606"],
         description:
             "You belong to Aurelion, the house of courage. You are not afraid to step forward when others hesitate."
     },
 
     corvane: {
         name: "Corvane",
+        code: "COR",
         motto: "Wisdom • Intelligence • Curiosity",
         logo: "assets/logos/Corvane.png",
+        colors: ["#0b2945", "#174d73", "#061522"],
         description:
             "You belong to Corvane, the house of wisdom. Your curiosity and sharp mind guide the way you see the world."
     },
 
     fidelis: {
         name: "Fidelis",
+        code: "FID",
         motto: "Loyalty • Kindness • Dedication",
         logo: "assets/logos/Fidelis.png",
+        colors: ["#7a5b12", "#b08b2c", "#3e2c05"],
         description:
             "You belong to Fidelis, the house of loyalty. You value trust, friendship, and the people who matter to you."
     },
 
     vesperyn: {
         name: "Vesperyn",
+        code: "VES",
         motto: "Ambition • Cunning • Resourcefulness",
         logo: "assets/logos/Vesperyn.png",
+        colors: ["#173f28", "#28633f", "#081c10"],
         description:
             "You belong to Vesperyn, the house of ambition. You know what you want and have the determination to find your own path."
     }
@@ -224,23 +387,36 @@ const houseData = {
    SORTING ELEMENTS
    ===================================================== */
 
-const startScreen =
-    document.getElementById("start-screen");
+const startScreen = document.getElementById("start-screen");
+const beginButton = document.getElementById("begin-btn");
+const sortingResult = document.getElementById("sorting-result");
+const music = document.getElementById("sorting-music");
+const musicControl = document.getElementById("music-control");
+const idcSection = document.getElementById("idc-editor");
 
-const beginButton =
-    document.getElementById("begin-btn");
 
-const sortingResult =
-    document.getElementById("sorting-result");
+/* =====================================================
+   SHUFFLE QUESTIONS
+   ===================================================== */
 
-const music =
-    document.getElementById("sorting-music");
+function shuffleArray(array) {
 
-const musicControl =
-    document.getElementById("music-control");
+    const shuffled = [...array];
 
-const idcSection =
-    document.getElementById("idc-editor");
+    for (let i = shuffled.length - 1; i > 0; i--) {
+
+        const j = Math.floor(
+            Math.random() * (i + 1)
+        );
+
+        [shuffled[i], shuffled[j]] =
+            [shuffled[j], shuffled[i]];
+
+    }
+
+    return shuffled;
+
+}
 
 
 /* =====================================================
@@ -258,6 +434,10 @@ function startSorting() {
         vesperyn: 0
     };
 
+    activeQuestions =
+        shuffleArray(questions)
+            .slice(0, QUESTIONS_TO_SHOW);
+
     if (startScreen) {
         startScreen.style.display = "none";
     }
@@ -273,7 +453,7 @@ function startSorting() {
 
     if (music) {
 
-        music.play().catch(function () {
+        music.play().catch(function() {
 
             console.log(
                 "Music autoplay blocked by browser."
@@ -295,25 +475,22 @@ function startSorting() {
 function showQuestion() {
 
     if (!sortingResult) {
-
-        console.error(
-            "sorting-result tidak ditemukan."
-        );
-
         return;
-
     }
 
     const question =
-        questions[currentQuestion];
+        activeQuestions[currentQuestion];
 
     if (!question) {
-
         showResult();
-
         return;
-
     }
+
+
+    /* Acak urutan jawaban juga */
+
+    const shuffledAnswers =
+        shuffleArray(question.answers);
 
 
     sortingResult.innerHTML = `
@@ -321,36 +498,26 @@ function showQuestion() {
         <div class="quiz-box">
 
             <p class="question-number">
-
                 QUESTION ${currentQuestion + 1}
-                OF ${questions.length}
-
+                OF ${QUESTIONS_TO_SHOW}
             </p>
 
-
             <h3>
-
                 ${question.question}
-
             </h3>
-
 
             <div class="answer-container">
 
-                ${question.answers.map(function(answer) {
+                ${shuffledAnswers.map(function(answer) {
 
                     return `
-
                         <button
                             type="button"
                             class="answer-button"
                             data-house="${answer[1]}"
                         >
-
                             ${answer[0]}
-
                         </button>
-
                     `;
 
                 }).join("")}
@@ -375,9 +542,7 @@ function showQuestion() {
             function() {
 
                 const house =
-                    button.getAttribute(
-                        "data-house"
-                    );
+                    button.getAttribute("data-house");
 
                 chooseAnswer(house);
 
@@ -401,9 +566,7 @@ function chooseAnswer(house) {
             house
         )
     ) {
-
         return;
-
     }
 
 
@@ -414,15 +577,11 @@ function chooseAnswer(house) {
 
     if (
         currentQuestion <
-        questions.length
+        activeQuestions.length
     ) {
-
         showQuestion();
-
     } else {
-
         showResult();
-
     }
 
 }
@@ -430,19 +589,32 @@ function chooseAnswer(house) {
 
 /* =====================================================
    GET WINNING HOUSE
+   FAIR TIE BREAKER
    ===================================================== */
 
 function getWinningHouse() {
 
-    return Object.keys(scores).reduce(
-        function(a, b) {
+    const highestScore =
+        Math.max(...Object.values(scores));
 
-            return scores[a] >= scores[b]
-                ? a
-                : b;
 
-        }
-    );
+    const tiedHouses =
+        Object.keys(scores).filter(
+            function(house) {
+
+                return scores[house] === highestScore;
+
+            }
+        );
+
+
+    /* Kalau seri, pilih secara random dari yang skornya seri */
+
+    return tiedHouses[
+        Math.floor(
+            Math.random() * tiedHouses.length
+        )
+    ];
 
 }
 
@@ -474,6 +646,15 @@ function showResult() {
         houseData[winningHouse];
 
 
+    /* Buat ID baru untuk hasil sorting ini */
+
+    studentId =
+        createStudentId(winningHouse);
+
+
+    drawIDC();
+
+
     sortingResult.innerHTML = `
 
         <div class="sorting-result-wrapper">
@@ -481,9 +662,7 @@ function showResult() {
             <div class="sorting-label-box">
 
                 <p class="sorting-label">
-
                     THE SORTING HAT HAS SPOKEN
-
                 </p>
 
             </div>
@@ -496,31 +675,21 @@ function showResult() {
             >
 
 
-            <h3>
-
-                ${house.name}
-
-            </h3>
+            <h3>${house.name}</h3>
 
 
             <p class="house-motto">
-
                 ${house.motto}
-
             </p>
 
 
             <p class="house-description">
-
                 ${house.description}
-
             </p>
 
 
             <p class="destiny-text">
-
                 ✦ YOUR JOURNEY BEGINS ✦
-
             </p>
 
 
@@ -529,17 +698,12 @@ function showResult() {
                 class="create-idc-button"
                 id="create-idc-result"
             >
-
                 CREATE YOUR IDC
-
             </button>
 
         </div>
 
     `;
-
-
-    drawIDC();
 
 
     const createIdcResult =
@@ -552,11 +716,7 @@ function showResult() {
 
         createIdcResult.addEventListener(
             "click",
-            function() {
-
-                openIDC();
-
-            }
+            openIDC
         );
 
     }
@@ -574,9 +734,7 @@ function openIDC() {
         return;
     }
 
-
     idcSection.classList.add("show");
-
     idcSection.style.display = "block";
 
 
@@ -597,12 +755,10 @@ function openIDC() {
    ===================================================== */
 
 if (beginButton) {
-
     beginButton.addEventListener(
         "click",
         startSorting
     );
-
 }
 
 
@@ -610,10 +766,7 @@ if (beginButton) {
    MUSIC CONTROL
    ===================================================== */
 
-if (
-    musicControl &&
-    music
-) {
+if (musicControl && music) {
 
     musicControl.addEventListener(
         "click",
@@ -625,15 +778,13 @@ if (
                     function() {}
                 );
 
-                musicControl.textContent =
-                    "♫";
+                musicControl.textContent = "♫";
 
             } else {
 
                 music.pause();
 
-                musicControl.textContent =
-                    "🔇";
+                musicControl.textContent = "🔇";
 
             }
 
@@ -650,29 +801,19 @@ if (
 function toggleHouse(house) {
 
     const allHouses =
-        document.querySelectorAll(
-            ".house"
-        );
+        document.querySelectorAll(".house");
 
 
-    allHouses.forEach(
-        function(item) {
+    allHouses.forEach(function(item) {
 
-            if (item !== house) {
-
-                item.classList.remove(
-                    "active"
-                );
-
-            }
-
+        if (item !== house) {
+            item.classList.remove("active");
         }
-    );
+
+    });
 
 
-    house.classList.toggle(
-        "active"
-    );
+    house.classList.toggle("active");
 
 }
 
@@ -682,49 +823,28 @@ function toggleHouse(house) {
    ===================================================== */
 
 const idcCanvas =
-    document.getElementById(
-        "idc-canvas"
-    );
-
-const idcWrapper =
-    document.getElementById(
-        "idc-canvas-wrapper"
-    );
+    document.getElementById("idc-canvas");
 
 const studentNameInput =
-    document.getElementById(
-        "student-name"
-    );
+    document.getElementById("student-name");
+
+const studentGenInput =
+    document.getElementById("student-gen");
 
 const studentPhotoInput =
-    document.getElementById(
-        "student-photo"
-    );
+    document.getElementById("student-photo");
 
 const photoScaleInput =
-    document.getElementById(
-        "photo-scale"
-    );
+    document.getElementById("photo-scale");
 
 const resetPhotoButton =
-    document.getElementById(
-        "reset-photo"
-    );
-
-const generateIdcButton =
-    document.getElementById(
-        "generate-idc"
-    );
+    document.getElementById("reset-photo");
 
 const downloadIdcButton =
-    document.getElementById(
-        "download-idc"
-    );
+    document.getElementById("download-idc");
 
 const idcStatus =
-    document.getElementById(
-        "idc-status"
-    );
+    document.getElementById("idc-status");
 
 
 /* =====================================================
@@ -750,28 +870,48 @@ let dragStartX = 0;
 let dragStartY = 0;
 
 
+/* Student ID dibuat sekali per hasil sorting */
+
+let studentId =
+    createStudentId("aurelion");
+
+
 /* =====================================================
-   IDC INITIALIZE
+   CREATE STUDENT ID
+   ===================================================== */
+
+function createStudentId(house) {
+
+    const houseCode =
+        houseData[house]
+            ? houseData[house].code
+            : "STU";
+
+
+    const randomNumber =
+        Math.floor(
+            1000 +
+            Math.random() * 9000
+        );
+
+
+    return `HOWSORCS-${houseCode}-${randomNumber}`;
+
+}
+
+
+/* =====================================================
+   INITIALIZE IDC
    ===================================================== */
 
 function initializeIDC() {
 
     if (!idcCanvas) {
-
-        console.log(
-            "IDC canvas belum ditemukan."
-        );
-
         return;
-
     }
 
-
     idcCtx =
-        idcCanvas.getContext(
-            "2d"
-        );
-
+        idcCanvas.getContext("2d");
 
     drawIDC();
 
@@ -779,25 +919,23 @@ function initializeIDC() {
 
 
 /* =====================================================
-   DRAW CARD BACKGROUND
+   DRAW HOUSE BACKGROUND
    ===================================================== */
 
-function drawCardBackground() {
+function drawCardBackground(selectedHouse) {
 
-    if (!idcCtx) {
+    if (!idcCtx || !idcCanvas) {
         return;
     }
 
 
-    const ctx =
-        idcCtx;
+    const ctx = idcCtx;
+    const width = idcCanvas.width;
+    const height = idcCanvas.height;
 
-
-    const width =
-        idcCanvas.width;
-
-    const height =
-        idcCanvas.height;
+    const house =
+        houseData[selectedHouse] ||
+        houseData.aurelion;
 
 
     const gradient =
@@ -811,23 +949,21 @@ function drawCardBackground() {
 
     gradient.addColorStop(
         0,
-        "#0d2343"
+        house.colors[0]
     );
 
     gradient.addColorStop(
         0.5,
-        "#07162c"
+        house.colors[1]
     );
 
     gradient.addColorStop(
         1,
-        "#102d52"
+        house.colors[2]
     );
 
 
-    ctx.fillStyle =
-        gradient;
-
+    ctx.fillStyle = gradient;
 
     ctx.fillRect(
         0,
@@ -837,14 +973,10 @@ function drawCardBackground() {
     );
 
 
-    /* Border */
+    /* Borders */
 
-    ctx.strokeStyle =
-        "#d8b45c";
-
-    ctx.lineWidth =
-        5;
-
+    ctx.strokeStyle = "#d8b45c";
+    ctx.lineWidth = 5;
 
     ctx.strokeRect(
         10,
@@ -854,14 +986,10 @@ function drawCardBackground() {
     );
 
 
-    /* Inner border */
-
     ctx.strokeStyle =
         "rgba(216,180,92,0.35)";
 
-    ctx.lineWidth =
-        2;
-
+    ctx.lineWidth = 2;
 
     ctx.strokeRect(
         22,
@@ -871,97 +999,114 @@ function drawCardBackground() {
     );
 
 
-    /* Stars */
+    /* Decorative stars */
 
     ctx.fillStyle =
-        "rgba(255,255,255,0.5)";
+        "rgba(255,255,255,0.45)";
 
 
     const stars = [
-
         [60, 70],
         [860, 75],
         [800, 540],
         [100, 530],
         [700, 90],
-        [250, 540]
-
+        [250, 540],
+        [500, 115]
     ];
 
 
-    stars.forEach(
-        function(star) {
+    stars.forEach(function(star) {
 
-            ctx.beginPath();
+        ctx.beginPath();
 
-            ctx.arc(
-                star[0],
-                star[1],
-                2,
-                0,
-                Math.PI * 2
-            );
+        ctx.arc(
+            star[0],
+            star[1],
+            2,
+            0,
+            Math.PI * 2
+        );
 
-            ctx.fill();
+        ctx.fill();
 
-        }
-    );
+    });
 
 }
 
 
 /* =====================================================
-   DRAW LOGO
+   DRAW IMAGE
    ===================================================== */
 
-function drawLogo(
-    src,
+function drawImageContain(
+    image,
     x,
     y,
     maxWidth,
-    maxHeight
+    maxHeight,
+    alpha = 1
 ) {
 
-    const image =
-        new Image();
+    if (!image || !image.complete) {
+        return;
+    }
 
 
-    image.onload =
-        function() {
-
-            if (!idcCtx) {
-                return;
-            }
-
-
-            const ratio =
-                Math.min(
-                    maxWidth / image.width,
-                    maxHeight / image.height
-                );
+    const ratio =
+        Math.min(
+            maxWidth / image.width,
+            maxHeight / image.height
+        );
 
 
-            const width =
-                image.width * ratio;
+    const width =
+        image.width * ratio;
+
+    const height =
+        image.height * ratio;
 
 
-            const height =
-                image.height * ratio;
+    idcCtx.save();
+
+    idcCtx.globalAlpha = alpha;
+
+    idcCtx.drawImage(
+        image,
+        x,
+        y,
+        width,
+        height
+    );
+
+    idcCtx.restore();
+
+}
 
 
-            idcCtx.drawImage(
-                image,
-                x,
-                y,
-                width,
-                height
-            );
+/* =====================================================
+   LOAD IMAGE
+   ===================================================== */
 
-        };
+function loadImage(src) {
 
+    return new Promise(function(resolve) {
 
-    image.src =
-        src;
+        const image = new Image();
+
+        image.onload =
+            function() {
+                resolve(image);
+            };
+
+        image.onerror =
+            function() {
+                resolve(null);
+            };
+
+        image.src = src;
+
+    });
 
 }
 
@@ -970,66 +1115,101 @@ function drawLogo(
    DRAW IDC
    ===================================================== */
 
-function drawIDC() {
+async function drawIDC() {
 
-    if (
-        !idcCtx ||
-        !idcCanvas
-    ) {
-
+    if (!idcCtx || !idcCanvas) {
         return;
-
     }
 
 
-    const ctx =
-        idcCtx;
-
-
-    const width =
-        idcCanvas.width;
-
-    const height =
-        idcCanvas.height;
-
-
-    ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-    );
-
-
-    drawCardBackground();
-
-
-    /* =================================================
-       LOGOS
-       ================================================= */
-
-    drawLogo(
-        "assets/logos/HOWSORCS%20LOGO.png",
-        38,
-        38,
-        70,
-        70
-    );
-
+    const ctx = idcCtx;
 
     const selectedHouse =
         currentWinningHouse ||
         "aurelion";
 
-
     const selectedHouseData =
-        houseData[selectedHouse];
+        houseData[selectedHouse] ||
+        houseData.aurelion;
 
 
-    if (selectedHouseData) {
+    ctx.clearRect(
+        0,
+        0,
+        idcCanvas.width,
+        idcCanvas.height
+    );
 
-        drawLogo(
-            selectedHouseData.logo,
+
+    drawCardBackground(selectedHouse);
+
+
+    /* Load logos */
+
+    const howsorcsLogo =
+        await loadImage(
+            "assets/logos/HOWSORCS%20LOGO.png"
+        );
+
+    const houseLogo =
+        await loadImage(
+            selectedHouseData.logo
+        );
+
+
+    /* Watermark house logo */
+
+    if (houseLogo) {
+
+        const ratio =
+            Math.min(
+                500 / houseLogo.width,
+                500 / houseLogo.height
+            );
+
+        const watermarkW =
+            houseLogo.width * ratio;
+
+        const watermarkH =
+            houseLogo.height * ratio;
+
+
+        ctx.save();
+
+        ctx.globalAlpha = 0.07;
+
+        ctx.drawImage(
+            houseLogo,
+            500,
+            100,
+            watermarkW,
+            watermarkH
+        );
+
+        ctx.restore();
+
+    }
+
+
+    /* Top logos */
+
+    if (howsorcsLogo) {
+
+        drawImageContain(
+            howsorcsLogo,
+            38,
+            38,
+            70,
+            70
+        );
+
+    }
+
+
+    if (houseLogo) {
+
+        drawImageContain(
+            houseLogo,
             120,
             38,
             70,
@@ -1039,19 +1219,11 @@ function drawIDC() {
     }
 
 
-    /* =================================================
-       HEADER
-       ================================================= */
+    /* HEADER */
 
-    ctx.fillStyle =
-        "#d8b45c";
-
-    ctx.font =
-        "bold 28px Georgia";
-
-    ctx.textAlign =
-        "left";
-
+    ctx.fillStyle = "#d8b45c";
+    ctx.font = "bold 28px Georgia";
+    ctx.textAlign = "left";
 
     ctx.fillText(
         "HOGWARTS SORCERY SCHOOL",
@@ -1060,12 +1232,8 @@ function drawIDC() {
     );
 
 
-    ctx.fillStyle =
-        "#f4e7c1";
-
-    ctx.font =
-        "14px Georgia";
-
+    ctx.fillStyle = "#f4e7c1";
+    ctx.font = "14px Georgia";
 
     ctx.fillText(
         "OFFICIAL STUDENT IDENTIFICATION CARD",
@@ -1074,29 +1242,16 @@ function drawIDC() {
     );
 
 
-    /* =================================================
-       PHOTO AREA
-       ================================================= */
+    /* PHOTO BOX */
 
-    const photoBoxX =
-        55;
-
-    const photoBoxY =
-        150;
-
-    const photoBoxW =
-        260;
-
-    const photoBoxH =
-        330;
+    const photoBoxX = 55;
+    const photoBoxY = 150;
+    const photoBoxW = 260;
+    const photoBoxH = 330;
 
 
-    ctx.strokeStyle =
-        "#d8b45c";
-
-    ctx.lineWidth =
-        3;
-
+    ctx.strokeStyle = "#d8b45c";
+    ctx.lineWidth = 3;
 
     ctx.strokeRect(
         photoBoxX,
@@ -1106,59 +1261,37 @@ function drawIDC() {
     );
 
 
-    /* =================================================
-       PHOTO
-       ================================================= */
+    /* PHOTO */
 
-    if (
-        studentPhoto &&
-        photoLoaded
-    ) {
-
-        const maxW =
-            photoBoxW;
-
-        const maxH =
-            photoBoxH;
-
+    if (studentPhoto && photoLoaded) {
 
         const baseScale =
             Math.max(
-                maxW / studentPhoto.width,
-                maxH / studentPhoto.height
+                photoBoxW / studentPhoto.width,
+                photoBoxH / studentPhoto.height
             );
 
 
         const finalScale =
-            baseScale *
-            photoScale;
+            baseScale * photoScale;
 
 
         const drawW =
-            studentPhoto.width *
-            finalScale;
-
+            studentPhoto.width * finalScale;
 
         const drawH =
-            studentPhoto.height *
-            finalScale;
-
+            studentPhoto.height * finalScale;
 
         const drawX =
-            photoX -
-            drawW / 2;
-
+            photoX - drawW / 2;
 
         const drawY =
-            photoY -
-            drawH / 2;
+            photoY - drawH / 2;
 
 
         ctx.save();
 
-
         ctx.beginPath();
-
 
         ctx.rect(
             photoBoxX,
@@ -1167,9 +1300,7 @@ function drawIDC() {
             photoBoxH
         );
 
-
         ctx.clip();
-
 
         ctx.drawImage(
             studentPhoto,
@@ -1179,15 +1310,12 @@ function drawIDC() {
             drawH
         );
 
-
         ctx.restore();
-
 
     } else {
 
         ctx.fillStyle =
             "rgba(255,255,255,0.08)";
-
 
         ctx.fillRect(
             photoBoxX,
@@ -1197,50 +1325,22 @@ function drawIDC() {
         );
 
 
-        ctx.fillStyle =
-            "#d8dce3";
-
-
-        ctx.font =
-            "16px Georgia";
-
-
-        ctx.textAlign =
-            "center";
-
+        ctx.fillStyle = "#d8dce3";
+        ctx.font = "16px Georgia";
+        ctx.textAlign = "center";
 
         ctx.fillText(
             "STUDENT PHOTO",
-            photoBoxX +
-                photoBoxW / 2,
-            photoBoxY +
-                photoBoxH / 2
+            photoBoxX + photoBoxW / 2,
+            photoBoxY + photoBoxH / 2
         );
 
-
-        ctx.textAlign =
-            "left";
+        ctx.textAlign = "left";
 
     }
 
 
-    /* =================================================
-       STUDENT INFORMATION
-       ================================================= */
-
-    ctx.fillStyle =
-        "#d8b45c";
-
-    ctx.font =
-        "12px Georgia";
-
-
-    ctx.fillText(
-        "STUDENT NAME",
-        370,
-        175
-    );
-
+    /* STUDENT NAME */
 
     const name =
         studentNameInput &&
@@ -1249,109 +1349,169 @@ function drawIDC() {
             : "YOUR NAME";
 
 
-    ctx.fillStyle =
-        "#f4e7c1";
+    ctx.fillStyle = "#d8b45c";
+    ctx.font = "12px Georgia";
 
-    ctx.font =
-        "bold 30px Georgia";
+    ctx.fillText(
+        "STUDENT NAME",
+        370,
+        165
+    );
 
+
+    ctx.fillStyle = "#f4e7c1";
+    ctx.font = "bold 28px Georgia";
 
     ctx.fillText(
         name,
         370,
-        215
+        205
     );
 
 
     /* HOUSE */
 
-    ctx.fillStyle =
-        "#d8b45c";
-
-    ctx.font =
-        "12px Georgia";
-
+    ctx.fillStyle = "#d8b45c";
+    ctx.font = "12px Georgia";
 
     ctx.fillText(
         "HOUSE",
         370,
-        270
+        250
     );
 
 
-    ctx.fillStyle =
-        "#f4e7c1";
-
-    ctx.font =
-        "bold 25px Georgia";
-
+    ctx.fillStyle = "#f4e7c1";
+    ctx.font = "bold 25px Georgia";
 
     ctx.fillText(
-        selectedHouseData
-            ? selectedHouseData.name.toUpperCase()
-            : "HOUSE",
+        selectedHouseData.name.toUpperCase(),
         370,
-        305
+        285
     );
 
 
-    /* ID */
+    /* HOUSE MOTTO */
 
     ctx.fillStyle =
-        "#d8b45c";
+        "rgba(244,231,193,0.8)";
 
-    ctx.font =
-        "12px Georgia";
-
+    ctx.font = "italic 13px Georgia";
 
     ctx.fillText(
-        "STUDENT ID",
+        selectedHouseData.motto,
+        370,
+        310
+    );
+
+
+    /* GEN */
+
+    const studentGen =
+        studentGenInput &&
+        studentGenInput.value.trim()
+            ? studentGenInput.value.trim()
+            : "—";
+
+
+    ctx.fillStyle = "#d8b45c";
+    ctx.font = "12px Georgia";
+
+    ctx.fillText(
+        "GEN",
         370,
         355
     );
 
 
-    ctx.fillStyle =
-        "#f4e7c1";
-
-    ctx.font =
-        "18px Georgia";
-
+    ctx.fillStyle = "#f4e7c1";
+    ctx.font = "18px Georgia";
 
     ctx.fillText(
-        "HSS-2026-001",
+        studentGen,
         370,
-        385
+        382
+    );
+
+
+    /* STUDENT ID */
+
+    ctx.fillStyle = "#d8b45c";
+    ctx.font = "12px Georgia";
+
+    ctx.fillText(
+        "STUDENT ID",
+        580,
+        355
+    );
+
+
+    ctx.fillStyle = "#f4e7c1";
+    ctx.font = "17px Georgia";
+
+    ctx.fillText(
+        studentId,
+        580,
+        382
     );
 
 
     /* STATUS */
 
-    ctx.fillStyle =
-        "#d8b45c";
-
-    ctx.font =
-        "12px Georgia";
-
+    ctx.fillStyle = "#d8b45c";
+    ctx.font = "12px Georgia";
 
     ctx.fillText(
         "STATUS",
         370,
-        435
+        425
     );
 
 
-    ctx.fillStyle =
-        "#f4e7c1";
-
-    ctx.font =
-        "bold 18px Georgia";
-
+    ctx.fillStyle = "#f4e7c1";
+    ctx.font = "bold 18px Georgia";
 
     ctx.fillText(
         "ACTIVE STUDENT",
         370,
-        465
+        455
+    );
+
+
+    /* DATE OF ENROLLMENT */
+
+    const today =
+        new Date();
+
+
+    const enrollmentDate =
+        today.toLocaleDateString(
+            "en-GB",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        ).toUpperCase();
+
+
+    ctx.fillStyle = "#d8b45c";
+    ctx.font = "12px Georgia";
+
+    ctx.fillText(
+        "DATE OF ENROLLMENT",
+        580,
+        425
+    );
+
+
+    ctx.fillStyle = "#f4e7c1";
+    ctx.font = "17px Georgia";
+
+    ctx.fillText(
+        enrollmentDate,
+        580,
+        455
     );
 
 
@@ -1360,24 +1520,12 @@ function drawIDC() {
     ctx.strokeStyle =
         "rgba(216,180,92,0.5)";
 
-    ctx.lineWidth =
-        1;
-
+    ctx.lineWidth = 1;
 
     ctx.beginPath();
 
-
-    ctx.moveTo(
-        370,
-        490
-    );
-
-
-    ctx.lineTo(
-        850,
-        490
-    );
-
+    ctx.moveTo(370, 485);
+    ctx.lineTo(850, 485);
 
     ctx.stroke();
 
@@ -1385,16 +1533,26 @@ function drawIDC() {
     /* Footer */
 
     ctx.fillStyle =
-        "rgba(216,180,92,0.7)";
+        "rgba(244,231,193,0.75)";
 
-    ctx.font =
-        "12px Georgia";
+    ctx.font = "12px Georgia";
 
+    ctx.fillText(
+        "OFFICIALLY ENROLLED • HOWSORCS TEAM CORE",
+        370,
+        515
+    );
+
+
+    ctx.fillStyle =
+        "rgba(216,180,92,0.75)";
+
+    ctx.font = "11px Georgia";
 
     ctx.fillText(
         "WHERE MAGIC BEGINS.",
         370,
-        520
+        545
     );
 
 }
@@ -1412,7 +1570,6 @@ if (studentPhotoInput) {
 
             const file =
                 event.target.files[0];
-
 
             if (!file) {
                 return;
@@ -1433,31 +1590,16 @@ if (studentPhotoInput) {
                     image.onload =
                         function() {
 
-                            studentPhoto =
-                                image;
+                            studentPhoto = image;
+                            photoLoaded = true;
 
-
-                            photoLoaded =
-                                true;
-
-
-                            photoX =
-                                185;
-
-
-                            photoY =
-                                315;
-
-
-                            photoScale =
-                                1;
+                            photoX = 185;
+                            photoY = 315;
+                            photoScale = 1;
 
 
                             if (photoScaleInput) {
-
-                                photoScaleInput.value =
-                                    "1";
-
+                                photoScaleInput.value = "1";
                             }
 
 
@@ -1466,15 +1608,12 @@ if (studentPhotoInput) {
                         };
 
 
-                    image.src =
-                        e.target.result;
+                    image.src = e.target.result;
 
                 };
 
 
-            reader.readAsDataURL(
-                file
-            );
+            reader.readAsDataURL(file);
 
         }
     );
@@ -1483,26 +1622,28 @@ if (studentPhotoInput) {
 
 
 /* =====================================================
-   NAME INPUT
+   LIVE INPUT UPDATE
    ===================================================== */
 
 if (studentNameInput) {
 
     studentNameInput.addEventListener(
         "input",
-        function() {
-
-            drawIDC();
-
-        }
+        drawIDC
     );
 
 }
 
 
-/* =====================================================
-   PHOTO SCALE
-   ===================================================== */
+if (studentGenInput) {
+
+    studentGenInput.addEventListener(
+        "input",
+        drawIDC
+    );
+
+}
+
 
 if (photoScaleInput) {
 
@@ -1514,7 +1655,6 @@ if (photoScaleInput) {
                 parseFloat(
                     photoScaleInput.value
                 ) || 1;
-
 
             drawIDC();
 
@@ -1534,23 +1674,13 @@ if (resetPhotoButton) {
         "click",
         function() {
 
-            photoX =
-                185;
-
-
-            photoY =
-                315;
-
-
-            photoScale =
-                1;
+            photoX = 185;
+            photoY = 315;
+            photoScale = 1;
 
 
             if (photoScaleInput) {
-
-                photoScaleInput.value =
-                    "1";
-
+                photoScaleInput.value = "1";
             }
 
 
@@ -1580,19 +1710,12 @@ if (idcCanvas) {
         "pointerdown",
         function(event) {
 
-            if (
-                !studentPhoto ||
-                !photoLoaded
-            ) {
-
+            if (!studentPhoto || !photoLoaded) {
                 return;
-
             }
 
 
-            draggingPhoto =
-                true;
-
+            draggingPhoto = true;
 
             idcCanvas.setPointerCapture(
                 event.pointerId
@@ -1604,22 +1727,18 @@ if (idcCanvas) {
 
 
             const scaleX =
-                idcCanvas.width /
-                rect.width;
-
+                idcCanvas.width / rect.width;
 
             const scaleY =
-                idcCanvas.height /
-                rect.height;
+                idcCanvas.height / rect.height;
 
 
             dragStartX =
-                event.clientX *
+                (event.clientX - rect.left) *
                 scaleX;
 
-
             dragStartY =
-                event.clientY *
+                (event.clientY - rect.top) *
                 scaleY;
 
         }
@@ -1640,49 +1759,30 @@ if (idcCanvas) {
 
 
             const scaleX =
-                idcCanvas.width /
-                rect.width;
-
+                idcCanvas.width / rect.width;
 
             const scaleY =
-                idcCanvas.height /
-                rect.height;
+                idcCanvas.height / rect.height;
 
 
             const currentX =
-                event.clientX *
+                (event.clientX - rect.left) *
                 scaleX;
 
-
             const currentY =
-                event.clientY *
+                (event.clientY - rect.top) *
                 scaleY;
 
 
-            const deltaX =
-                currentX -
-                dragStartX;
-
-
-            const deltaY =
-                currentY -
-                dragStartY;
-
-
             photoX +=
-                deltaX;
-
+                currentX - dragStartX;
 
             photoY +=
-                deltaY;
+                currentY - dragStartY;
 
 
-            dragStartX =
-                currentX;
-
-
-            dragStartY =
-                currentY;
+            dragStartX = currentX;
+            dragStartY = currentY;
 
 
             drawIDC();
@@ -1695,8 +1795,7 @@ if (idcCanvas) {
         "pointerup",
         function() {
 
-            draggingPhoto =
-                false;
+            draggingPhoto = false;
 
         }
     );
@@ -1706,34 +1805,7 @@ if (idcCanvas) {
         "pointercancel",
         function() {
 
-            draggingPhoto =
-                false;
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   GENERATE IDC
-   ===================================================== */
-
-if (generateIdcButton) {
-
-    generateIdcButton.addEventListener(
-        "click",
-        function() {
-
-            drawIDC();
-
-
-            if (idcStatus) {
-
-                idcStatus.textContent =
-                    "IDC berhasil dibuat. Periksa preview sebelum mengunduh.";
-
-            }
+            draggingPhoto = false;
 
         }
     );
@@ -1749,48 +1821,39 @@ if (downloadIdcButton) {
 
     downloadIdcButton.addEventListener(
         "click",
-        function() {
+        async function() {
 
             if (!idcCanvas) {
                 return;
             }
 
 
-            drawIDC();
+            await drawIDC();
 
 
-            setTimeout(
-                function() {
-
-                    const link =
-                        document.createElement(
-                            "a"
-                        );
+            const link =
+                document.createElement("a");
 
 
-                    link.download =
-                        "HOWSORCS-IDC.png";
+            link.download =
+                "HOWSORCS-IDC.png";
 
 
-                    link.href =
-                        idcCanvas.toDataURL(
-                            "image/png"
-                        );
+            link.href =
+                idcCanvas.toDataURL(
+                    "image/png"
+                );
 
 
-                    link.click();
+            link.click();
 
 
-                    if (idcStatus) {
+            if (idcStatus) {
 
-                        idcStatus.textContent =
-                            "IDC berhasil diunduh.";
+                idcStatus.textContent =
+                    "IDC berhasil diunduh.";
 
-                    }
-
-                },
-                150
-            );
+            }
 
         }
     );
@@ -1799,29 +1862,23 @@ if (downloadIdcButton) {
 
 
 /* =====================================================
-   IDC INITIAL DRAW
+   INITIAL DRAW
    ===================================================== */
 
 initializeIDC();
 
-
-/* =====================================================
-   DEBUG
-   ===================================================== */
 
 console.log(
     "HOWSORCS JavaScript berhasil dimuat."
 );
 
 console.log(
-    "Sorting Hat:",
+    "Question bank:",
     questions.length,
-    "questions"
+    "questions available."
 );
 
 console.log(
-    "IDC:",
-    idcCanvas
-        ? "Canvas ditemukan"
-        : "Canvas tidak ditemukan"
+    "Questions per sorting:",
+    QUESTIONS_TO_SHOW
 );
