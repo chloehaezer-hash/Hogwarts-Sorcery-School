@@ -1,7 +1,36 @@
 /* =====================================================
    HOWSORCS — MAIN JAVASCRIPT
-   SORTING HAT + IDC EDITOR
+   SORTING HAT + HOUSE PLACEMENT + IDC EDITOR
    ===================================================== */
+
+
+/* =====================================================
+   SORTING SYSTEM SETTINGS
+   ===================================================== */
+
+const SORTING_START_DATE =
+    new Date("2026-08-31T00:00:00+07:00");
+
+const SORTING_PERIOD_DAYS = 10;
+
+const HOUSE_MIN_STUDENTS = 10;
+
+const HOUSE_MAX_STUDENTS = 15;
+
+const HOUSE_STORAGE_KEY =
+    "howsorcs_house_placement";
+
+
+/* =====================================================
+   HOUSE KEYS
+   ===================================================== */
+
+const HOUSE_KEYS = [
+    "aurelion",
+    "corvane",
+    "fidelis",
+    "vesperyn"
+];
 
 
 /* =====================================================
@@ -387,34 +416,696 @@ const houseData = {
    SORTING ELEMENTS
    ===================================================== */
 
-const startScreen = document.getElementById("start-screen");
-const beginButton = document.getElementById("begin-btn");
-const sortingResult = document.getElementById("sorting-result");
-const music = document.getElementById("sorting-music");
-const musicControl = document.getElementById("music-control");
-const idcSection = document.getElementById("idc-editor");
+const startScreen =
+    document.getElementById("start-screen");
+
+const beginButton =
+    document.getElementById("begin-btn");
+
+const sortingResult =
+    document.getElementById("sorting-result");
+
+const music =
+    document.getElementById("sorting-music");
+
+const musicControl =
+    document.getElementById("music-control");
+
+const idcSection =
+    document.getElementById("idc-editor");
 
 
 /* =====================================================
-   SHUFFLE QUESTIONS
+   SHUFFLE ARRAY
    ===================================================== */
 
 function shuffleArray(array) {
 
     const shuffled = [...array];
 
-    for (let i = shuffled.length - 1; i > 0; i--) {
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
 
-        const j = Math.floor(
-            Math.random() * (i + 1)
-        );
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
-        [shuffled[i], shuffled[j]] =
-            [shuffled[j], shuffled[i]];
+        [
+            shuffled[i],
+            shuffled[j]
+        ] =
+        [
+            shuffled[j],
+            shuffled[i]
+        ];
 
     }
 
     return shuffled;
+
+}
+
+
+/* =====================================================
+   SORTING PERIOD
+   ===================================================== */
+
+function getCurrentSortingPeriod() {
+
+    const now =
+        new Date();
+
+    const difference =
+        now.getTime() -
+        SORTING_START_DATE.getTime();
+
+    if (difference < 0) {
+        return 1;
+    }
+
+    const daysPassed =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+    return (
+        Math.floor(
+            daysPassed /
+            SORTING_PERIOD_DAYS
+        ) + 1
+    );
+
+}
+
+
+/* =====================================================
+   PERIOD INFO
+   ===================================================== */
+
+function getSortingPeriodInfo() {
+
+    const period =
+        getCurrentSortingPeriod();
+
+    const startDate =
+        new Date(
+            SORTING_START_DATE
+        );
+
+    startDate.setDate(
+        startDate.getDate() +
+        (
+            (period - 1) *
+            SORTING_PERIOD_DAYS
+        )
+    );
+
+    const endDate =
+        new Date(startDate);
+
+    endDate.setDate(
+        endDate.getDate() +
+        SORTING_PERIOD_DAYS
+    );
+
+    return {
+        period: period,
+        startDate: startDate,
+        endDate: endDate
+    };
+
+}
+
+
+/* =====================================================
+   LOCAL STORAGE — GET DATA
+   ===================================================== */
+
+function getHousePlacementData() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                HOUSE_STORAGE_KEY
+            );
+
+        if (!saved) {
+            return {};
+        }
+
+        const parsed =
+            JSON.parse(saved);
+
+        if (
+            !parsed ||
+            typeof parsed !== "object"
+        ) {
+            return {};
+        }
+
+        return parsed;
+
+    } catch (error) {
+
+        console.error(
+            "Gagal membaca data House:",
+            error
+        );
+
+        return {};
+
+    }
+
+}
+
+
+/* =====================================================
+   LOCAL STORAGE — SAVE DATA
+   ===================================================== */
+
+function saveHousePlacementData(data) {
+
+    try {
+
+        localStorage.setItem(
+            HOUSE_STORAGE_KEY,
+            JSON.stringify(data)
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Gagal menyimpan data House:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   GET STUDENTS IN CURRENT PERIOD
+   ===================================================== */
+
+function getStudentsForPeriod(period) {
+
+    const data =
+        getHousePlacementData();
+
+    if (
+        !data[period] ||
+        !Array.isArray(data[period])
+    ) {
+
+        return [];
+
+    }
+
+    return data[period];
+
+}
+
+
+/* =====================================================
+   GET HOUSE COUNTS
+   ===================================================== */
+
+function getHouseCountsForPeriod(period) {
+
+    const students =
+        getStudentsForPeriod(period);
+
+    const counts = {
+
+        aurelion: 0,
+        corvane: 0,
+        fidelis: 0,
+        vesperyn: 0
+
+    };
+
+
+    students.forEach(
+        function(student) {
+
+            if (
+                student &&
+                HOUSE_KEYS.includes(
+                    student.house
+                )
+            ) {
+
+                counts[student.house]++;
+
+            }
+
+        }
+    );
+
+
+    return counts;
+
+}
+
+
+/* =====================================================
+   GET FULL HOUSE STATUS
+   ===================================================== */
+
+function getCurrentHouseStatus() {
+
+    const period =
+        getCurrentSortingPeriod();
+
+    const counts =
+        getHouseCountsForPeriod(
+            period
+        );
+
+    return {
+
+        period: period,
+
+        counts: counts,
+
+        minimum:
+            HOUSE_MIN_STUDENTS,
+
+        maximum:
+            HOUSE_MAX_STUDENTS
+
+    };
+
+}
+
+
+/* =====================================================
+   GET QUIZ RANKING
+   ===================================================== */
+
+function getHouseRanking(scores) {
+
+    const houses =
+        [...HOUSE_KEYS];
+
+
+    houses.sort(
+        function(a, b) {
+
+            const scoreDifference =
+                (
+                    scores[b] || 0
+                ) -
+                (
+                    scores[a] || 0
+                );
+
+
+            if (
+                scoreDifference !== 0
+            ) {
+
+                return scoreDifference;
+
+            }
+
+
+            /*
+             * Kalau skor seri,
+             * urutannya diacak.
+             */
+
+            return (
+                Math.random() -
+                0.5
+            );
+
+        }
+    );
+
+
+    return houses;
+
+}
+
+
+/* =====================================================
+   FIND HOUSE FOR STUDENT
+   ===================================================== */
+
+function findHouseForStudent(scores) {
+
+    const period =
+        getCurrentSortingPeriod();
+
+    const counts =
+        getHouseCountsForPeriod(
+            period
+        );
+
+    const ranking =
+        getHouseRanking(scores);
+
+
+    /* =================================================
+       PRIORITAS 1:
+       HOUSE YANG BELUM MENCAPAI 10
+       ================================================= */
+
+    for (
+        const house of ranking
+    ) {
+
+        if (
+            counts[house] <
+            HOUSE_MIN_STUDENTS
+        ) {
+
+            return {
+
+                success: true,
+
+                house: house,
+
+                period: period,
+
+                counts: counts,
+
+                ranking: ranking,
+
+                phase: "minimum"
+
+            };
+
+        }
+
+    }
+
+
+    /* =================================================
+       PRIORITAS 2:
+       SEMUA HOUSE SUDAH 10
+
+       Sekarang tetap berdasarkan
+       ranking quiz, tetapi maksimal 15.
+       ================================================= */
+
+    for (
+        const house of ranking
+    ) {
+
+        if (
+            counts[house] <
+            HOUSE_MAX_STUDENTS
+        ) {
+
+            return {
+
+                success: true,
+
+                house: house,
+
+                period: period,
+
+                counts: counts,
+
+                ranking: ranking,
+
+                phase: "maximum"
+
+            };
+
+        }
+
+    }
+
+
+    /* =================================================
+       SEMUA HOUSE SUDAH 15
+       ================================================= */
+
+    return {
+
+        success: false,
+
+        house: null,
+
+        period: period,
+
+        counts: counts,
+
+        ranking: ranking,
+
+        full: true
+
+    };
+
+}
+
+
+/* =====================================================
+   GET STUDENT NAME FOR LOCAL RECORD
+   ===================================================== */
+
+function getRegistrationStudentName() {
+
+    const input =
+        document.getElementById(
+            "register-student-name"
+        );
+
+    if (
+        input &&
+        input.value.trim()
+    ) {
+
+        return input.value.trim();
+
+    }
+
+    return "Unknown Student";
+
+}
+
+
+/* =====================================================
+   SAVE STUDENT HOUSE PLACEMENT
+   ===================================================== */
+
+function saveStudentPlacement(
+    house,
+    scores,
+    studentId
+) {
+
+    const period =
+        getCurrentSortingPeriod();
+
+    const data =
+        getHousePlacementData();
+
+
+    if (
+        !Array.isArray(
+            data[period]
+        )
+    ) {
+
+        data[period] = [];
+
+    }
+
+
+    const student = {
+
+        id: studentId,
+
+        name:
+            getRegistrationStudentName(),
+
+        house: house,
+
+        period: period,
+
+        scores: {
+            ...scores
+        },
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    data[period].push(
+        student
+    );
+
+
+    saveHousePlacementData(
+        data
+    );
+
+
+    return student;
+
+}
+
+
+/* =====================================================
+   PLACE STUDENT
+   ===================================================== */
+
+function placeStudent(scores) {
+
+    const result =
+        findHouseForStudent(
+            scores
+        );
+
+
+    if (!result.success) {
+
+        return {
+
+            success: false,
+
+            message:
+                "Semua House sudah mencapai 15 siswa untuk periode ini.",
+
+            period:
+                result.period,
+
+            counts:
+                result.counts
+
+        };
+
+    }
+
+
+    const studentIdPreview =
+        createStudentId(
+            result.house
+        );
+
+
+    const student =
+        saveStudentPlacement(
+            result.house,
+            scores,
+            studentIdPreview
+        );
+
+
+    return {
+
+        success: true,
+
+        house:
+            result.house,
+
+        student:
+            student,
+
+        period:
+            result.period,
+
+        counts:
+            getHouseCountsForPeriod(
+                result.period
+            ),
+
+        ranking:
+            result.ranking,
+
+        phase:
+            result.phase
+
+    };
+
+}
+
+
+/* =====================================================
+   DEBUG HOUSE STATUS
+   ===================================================== */
+
+function showHouseStatus() {
+
+    const status =
+        getCurrentHouseStatus();
+
+
+    console.table({
+
+        Period:
+            status.period,
+
+        Aurelion:
+            status.counts.aurelion,
+
+        Corvane:
+            status.counts.corvane,
+
+        Fidelis:
+            status.counts.fidelis,
+
+        Vesperyn:
+            status.counts.vesperyn
+
+    });
+
+
+    console.log(
+        "Minimum per House:",
+        HOUSE_MIN_STUDENTS
+    );
+
+    console.log(
+        "Maximum per House:",
+        HOUSE_MAX_STUDENTS
+    );
+
+}
+
+
+/* =====================================================
+   RESET LOCAL HOUSE DATA
+   ===================================================== */
+
+function resetHousePlacementData() {
+
+    const confirmed =
+        window.confirm(
+            "Reset semua data penempatan House?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        HOUSE_STORAGE_KEY
+    );
+
+
+    console.log(
+        "Data House berhasil di-reset."
+    );
+
+
+    alert(
+        "Data penempatan House berhasil di-reset."
+    );
 
 }
 
@@ -428,40 +1119,66 @@ function startSorting() {
     currentQuestion = 0;
 
     scores = {
+
         aurelion: 0,
         corvane: 0,
         fidelis: 0,
         vesperyn: 0
+
     };
 
+
     activeQuestions =
-        shuffleArray(questions)
-            .slice(0, QUESTIONS_TO_SHOW);
+        shuffleArray(
+            questions
+        ).slice(
+            0,
+            QUESTIONS_TO_SHOW
+        );
+
 
     if (startScreen) {
-        startScreen.style.display = "none";
+
+        startScreen.style.display =
+            "none";
+
     }
+
 
     if (sortingResult) {
-        sortingResult.style.display = "block";
+
+        sortingResult.style.display =
+            "block";
+
     }
 
+
     if (idcSection) {
-        idcSection.classList.remove("show");
-        idcSection.style.display = "none";
+
+        idcSection.classList.remove(
+            "show"
+        );
+
+        idcSection.style.display =
+            "none";
+
     }
+
 
     if (music) {
 
-        music.play().catch(function() {
+        music.play().catch(
+            function() {
 
-            console.log(
-                "Music autoplay blocked by browser."
-            );
+                console.log(
+                    "Music autoplay blocked by browser."
+                );
 
-        });
+            }
+        );
 
     }
+
 
     showQuestion();
 
@@ -478,19 +1195,26 @@ function showQuestion() {
         return;
     }
 
+
     const question =
-        activeQuestions[currentQuestion];
+        activeQuestions[
+            currentQuestion
+        ];
+
 
     if (!question) {
+
         showResult();
+
         return;
+
     }
 
 
-    /* Acak urutan jawaban juga */
-
     const shuffledAnswers =
-        shuffleArray(question.answers);
+        shuffleArray(
+            question.answers
+        );
 
 
     sortingResult.innerHTML = `
@@ -508,19 +1232,23 @@ function showQuestion() {
 
             <div class="answer-container">
 
-                ${shuffledAnswers.map(function(answer) {
+                ${shuffledAnswers.map(
+                    function(answer) {
 
-                    return `
-                        <button
-                            type="button"
-                            class="answer-button"
-                            data-house="${answer[1]}"
-                        >
-                            ${answer[0]}
-                        </button>
-                    `;
+                        return `
 
-                }).join("")}
+                            <button
+                                type="button"
+                                class="answer-button"
+                                data-house="${answer[1]}"
+                            >
+                                ${answer[0]}
+                            </button>
+
+                        `;
+
+                    }
+                ).join("")}
 
             </div>
 
@@ -535,21 +1263,27 @@ function showQuestion() {
         );
 
 
-    answerButtons.forEach(function(button) {
+    answerButtons.forEach(
+        function(button) {
 
-        button.addEventListener(
-            "click",
-            function() {
+            button.addEventListener(
+                "click",
+                function() {
 
-                const house =
-                    button.getAttribute("data-house");
+                    const house =
+                        button.getAttribute(
+                            "data-house"
+                        );
 
-                chooseAnswer(house);
+                    chooseAnswer(
+                        house
+                    );
 
-            }
-        );
+                }
+            );
 
-    });
+        }
+    );
 
 }
 
@@ -566,7 +1300,9 @@ function chooseAnswer(house) {
             house
         )
     ) {
+
         return;
+
     }
 
 
@@ -579,9 +1315,13 @@ function chooseAnswer(house) {
         currentQuestion <
         activeQuestions.length
     ) {
+
         showQuestion();
+
     } else {
+
         showResult();
+
     }
 
 }
@@ -589,30 +1329,37 @@ function chooseAnswer(house) {
 
 /* =====================================================
    GET WINNING HOUSE
-   FAIR TIE BREAKER
    ===================================================== */
 
 function getWinningHouse() {
 
     const highestScore =
-        Math.max(...Object.values(scores));
+        Math.max(
+            ...Object.values(
+                scores
+            )
+        );
 
 
     const tiedHouses =
-        Object.keys(scores).filter(
+        Object.keys(
+            scores
+        ).filter(
             function(house) {
 
-                return scores[house] === highestScore;
+                return (
+                    scores[house] ===
+                    highestScore
+                );
 
             }
         );
 
 
-    /* Kalau seri, pilih secara random dari yang skornya seri */
-
     return tiedHouses[
         Math.floor(
-            Math.random() * tiedHouses.length
+            Math.random() *
+            tiedHouses.length
         )
     ];
 
@@ -630,8 +1377,60 @@ function showResult() {
     }
 
 
+    /*
+     * Jangan lagi langsung menggunakan
+     * getWinningHouse() sebagai House final.
+     *
+     * Sekarang quiz menentukan RANKING,
+     * lalu sistem placement menentukan
+     * House final berdasarkan kapasitas.
+     */
+
+    const placement =
+        placeStudent(
+            scores
+        );
+
+
+    if (!placement.success) {
+
+        sortingResult.innerHTML = `
+
+            <div class="sorting-result-wrapper">
+
+                <div class="sorting-label-box">
+
+                    <p class="sorting-label">
+                        SORTING PERIOD FULL
+                    </p>
+
+                </div>
+
+                <h3>
+                    ALL HOUSES ARE FULL
+                </h3>
+
+                <p class="house-description">
+                    Semua House telah mencapai
+                    kapasitas maksimum 15 siswa
+                    untuk periode ini.
+                </p>
+
+                <p class="destiny-text">
+                    ✦ PLEASE RETURN IN THE NEXT SORTING PERIOD ✦
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
     const winningHouse =
-        getWinningHouse();
+        placement.house;
 
 
     currentWinningHouse =
@@ -643,16 +1442,29 @@ function showResult() {
 
 
     const house =
-        houseData[winningHouse];
+        houseData[
+            winningHouse
+        ];
 
 
-    /* Buat ID baru untuk hasil sorting ini */
+    /*
+     * Gunakan Student ID yang sudah
+     * dibuat untuk House final.
+     */
 
     studentId =
-        createStudentId(winningHouse);
+        placement.student.id;
 
 
     drawIDC();
+
+
+    const period =
+        placement.period;
+
+
+    const counts =
+        placement.counts;
 
 
     sortingResult.innerHTML = `
@@ -675,7 +1487,9 @@ function showResult() {
             >
 
 
-            <h3>${house.name}</h3>
+            <h3>
+                ${house.name}
+            </h3>
 
 
             <p class="house-motto">
@@ -734,18 +1548,27 @@ function openIDC() {
         return;
     }
 
-    idcSection.classList.add("show");
-    idcSection.style.display = "block";
+
+    idcSection.classList.add(
+        "show"
+    );
 
 
-    setTimeout(function() {
+    idcSection.style.display =
+        "block";
 
-        idcSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
 
-    }, 100);
+    setTimeout(
+        function() {
+
+            idcSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        },
+        100
+    );
 
 }
 
@@ -755,10 +1578,12 @@ function openIDC() {
    ===================================================== */
 
 if (beginButton) {
+
     beginButton.addEventListener(
         "click",
         startSorting
     );
+
 }
 
 
@@ -766,7 +1591,10 @@ if (beginButton) {
    MUSIC CONTROL
    ===================================================== */
 
-if (musicControl && music) {
+if (
+    musicControl &&
+    music
+) {
 
     musicControl.addEventListener(
         "click",
@@ -778,13 +1606,15 @@ if (musicControl && music) {
                     function() {}
                 );
 
-                musicControl.textContent = "♫";
+                musicControl.textContent =
+                    "♫";
 
             } else {
 
                 music.pause();
 
-                musicControl.textContent = "🔇";
+                musicControl.textContent =
+                    "🔇";
 
             }
 
@@ -801,19 +1631,29 @@ if (musicControl && music) {
 function toggleHouse(house) {
 
     const allHouses =
-        document.querySelectorAll(".house");
+        document.querySelectorAll(
+            ".house"
+        );
 
 
-    allHouses.forEach(function(item) {
+    allHouses.forEach(
+        function(item) {
 
-        if (item !== house) {
-            item.classList.remove("active");
+            if (item !== house) {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+
         }
+    );
 
-    });
 
-
-    house.classList.toggle("active");
+    house.classList.toggle(
+        "active"
+    );
 
 }
 
@@ -823,28 +1663,44 @@ function toggleHouse(house) {
    ===================================================== */
 
 const idcCanvas =
-    document.getElementById("idc-canvas");
+    document.getElementById(
+        "idc-canvas"
+    );
 
 const studentNameInput =
-    document.getElementById("student-name");
+    document.getElementById(
+        "student-name"
+    );
 
 const studentGenInput =
-    document.getElementById("student-gen");
+    document.getElementById(
+        "student-gen"
+    );
 
 const studentPhotoInput =
-    document.getElementById("student-photo");
+    document.getElementById(
+        "student-photo"
+    );
 
 const photoScaleInput =
-    document.getElementById("photo-scale");
+    document.getElementById(
+        "photo-scale"
+    );
 
 const resetPhotoButton =
-    document.getElementById("reset-photo");
+    document.getElementById(
+        "reset-photo"
+    );
 
 const downloadIdcButton =
-    document.getElementById("download-idc");
+    document.getElementById(
+        "download-idc"
+    );
 
 const idcStatus =
-    document.getElementById("idc-status");
+    document.getElementById(
+        "idc-status"
+    );
 
 
 /* =====================================================
@@ -870,10 +1726,14 @@ let dragStartX = 0;
 let dragStartY = 0;
 
 
-/* Student ID dibuat sekali per hasil sorting */
+/* =====================================================
+   STUDENT ID
+   ===================================================== */
 
 let studentId =
-    createStudentId("aurelion");
+    createStudentId(
+        "aurelion"
+    );
 
 
 /* =====================================================
@@ -910,8 +1770,12 @@ function initializeIDC() {
         return;
     }
 
+
     idcCtx =
-        idcCanvas.getContext("2d");
+        idcCanvas.getContext(
+            "2d"
+        );
+
 
     drawIDC();
 
@@ -922,19 +1786,34 @@ function initializeIDC() {
    DRAW HOUSE BACKGROUND
    ===================================================== */
 
-function drawCardBackground(selectedHouse) {
+function drawCardBackground(
+    selectedHouse
+) {
 
-    if (!idcCtx || !idcCanvas) {
+    if (
+        !idcCtx ||
+        !idcCanvas
+    ) {
+
         return;
+
     }
 
 
-    const ctx = idcCtx;
-    const width = idcCanvas.width;
-    const height = idcCanvas.height;
+    const ctx =
+        idcCtx;
+
+    const width =
+        idcCanvas.width;
+
+    const height =
+        idcCanvas.height;
+
 
     const house =
-        houseData[selectedHouse] ||
+        houseData[
+            selectedHouse
+        ] ||
         houseData.aurelion;
 
 
@@ -963,7 +1842,9 @@ function drawCardBackground(selectedHouse) {
     );
 
 
-    ctx.fillStyle = gradient;
+    ctx.fillStyle =
+        gradient;
+
 
     ctx.fillRect(
         0,
@@ -973,10 +1854,11 @@ function drawCardBackground(selectedHouse) {
     );
 
 
-    /* Borders */
+    ctx.strokeStyle =
+        "#d8b45c";
 
-    ctx.strokeStyle = "#d8b45c";
     ctx.lineWidth = 5;
+
 
     ctx.strokeRect(
         10,
@@ -991,6 +1873,7 @@ function drawCardBackground(selectedHouse) {
 
     ctx.lineWidth = 2;
 
+
     ctx.strokeRect(
         22,
         22,
@@ -999,13 +1882,12 @@ function drawCardBackground(selectedHouse) {
     );
 
 
-    /* Decorative stars */
-
     ctx.fillStyle =
         "rgba(255,255,255,0.45)";
 
 
     const stars = [
+
         [60, 70],
         [860, 75],
         [800, 540],
@@ -1013,30 +1895,33 @@ function drawCardBackground(selectedHouse) {
         [700, 90],
         [250, 540],
         [500, 115]
+
     ];
 
 
-    stars.forEach(function(star) {
+    stars.forEach(
+        function(star) {
 
-        ctx.beginPath();
+            ctx.beginPath();
 
-        ctx.arc(
-            star[0],
-            star[1],
-            2,
-            0,
-            Math.PI * 2
-        );
+            ctx.arc(
+                star[0],
+                star[1],
+                2,
+                0,
+                Math.PI * 2
+            );
 
-        ctx.fill();
+            ctx.fill();
 
-    });
+        }
+    );
 
 }
 
 
 /* =====================================================
-   DRAW IMAGE
+   DRAW IMAGE CONTAIN
    ===================================================== */
 
 function drawImageContain(
@@ -1048,28 +1933,40 @@ function drawImageContain(
     alpha = 1
 ) {
 
-    if (!image || !image.complete) {
+    if (
+        !image ||
+        !image.complete
+    ) {
+
         return;
+
     }
 
 
     const ratio =
         Math.min(
-            maxWidth / image.width,
-            maxHeight / image.height
+            maxWidth /
+                image.width,
+
+            maxHeight /
+                image.height
         );
 
 
     const width =
-        image.width * ratio;
+        image.width *
+        ratio;
 
     const height =
-        image.height * ratio;
+        image.height *
+        ratio;
 
 
     idcCtx.save();
 
-    idcCtx.globalAlpha = alpha;
+    idcCtx.globalAlpha =
+        alpha;
+
 
     idcCtx.drawImage(
         image,
@@ -1078,6 +1975,7 @@ function drawImageContain(
         width,
         height
     );
+
 
     idcCtx.restore();
 
@@ -1090,23 +1988,38 @@ function drawImageContain(
 
 function loadImage(src) {
 
-    return new Promise(function(resolve) {
+    return new Promise(
+        function(resolve) {
 
-        const image = new Image();
+            const image =
+                new Image();
 
-        image.onload =
-            function() {
-                resolve(image);
-            };
 
-        image.onerror =
-            function() {
-                resolve(null);
-            };
+            image.onload =
+                function() {
 
-        image.src = src;
+                    resolve(
+                        image
+                    );
 
-    });
+                };
+
+
+            image.onerror =
+                function() {
+
+                    resolve(
+                        null
+                    );
+
+                };
+
+
+            image.src =
+                src;
+
+        }
+    );
 
 }
 
@@ -1117,19 +2030,29 @@ function loadImage(src) {
 
 async function drawIDC() {
 
-    if (!idcCtx || !idcCanvas) {
+    if (
+        !idcCtx ||
+        !idcCanvas
+    ) {
+
         return;
+
     }
 
 
-    const ctx = idcCtx;
+    const ctx =
+        idcCtx;
+
 
     const selectedHouse =
         currentWinningHouse ||
         "aurelion";
 
+
     const selectedHouseData =
-        houseData[selectedHouse] ||
+        houseData[
+            selectedHouse
+        ] ||
         houseData.aurelion;
 
 
@@ -1141,15 +2064,16 @@ async function drawIDC() {
     );
 
 
-    drawCardBackground(selectedHouse);
+    drawCardBackground(
+        selectedHouse
+    );
 
-
-    /* Load logos */
 
     const howsorcsLogo =
         await loadImage(
             "assets/logos/HOWSORCS%20LOGO.png"
         );
+
 
     const houseLogo =
         await loadImage(
@@ -1157,26 +2081,34 @@ async function drawIDC() {
         );
 
 
-    /* Watermark house logo */
+    /* Watermark */
 
     if (houseLogo) {
 
         const ratio =
             Math.min(
-                500 / houseLogo.width,
-                500 / houseLogo.height
+                500 /
+                    houseLogo.width,
+
+                500 /
+                    houseLogo.height
             );
 
+
         const watermarkW =
-            houseLogo.width * ratio;
+            houseLogo.width *
+            ratio;
 
         const watermarkH =
-            houseLogo.height * ratio;
+            houseLogo.height *
+            ratio;
 
 
         ctx.save();
 
-        ctx.globalAlpha = 0.07;
+        ctx.globalAlpha =
+            0.07;
+
 
         ctx.drawImage(
             houseLogo,
@@ -1185,6 +2117,7 @@ async function drawIDC() {
             watermarkW,
             watermarkH
         );
+
 
         ctx.restore();
 
@@ -1221,9 +2154,15 @@ async function drawIDC() {
 
     /* HEADER */
 
-    ctx.fillStyle = "#d8b45c";
-    ctx.font = "bold 28px Georgia";
-    ctx.textAlign = "left";
+    ctx.fillStyle =
+        "#d8b45c";
+
+    ctx.font =
+        "bold 28px Georgia";
+
+    ctx.textAlign =
+        "left";
+
 
     ctx.fillText(
         "HOGWARTS SORCERY SCHOOL",
@@ -1232,8 +2171,12 @@ async function drawIDC() {
     );
 
 
-    ctx.fillStyle = "#f4e7c1";
-    ctx.font = "14px Georgia";
+    ctx.fillStyle =
+        "#f4e7c1";
+
+    ctx.font =
+        "14px Georgia";
+
 
     ctx.fillText(
         "OFFICIAL STUDENT IDENTIFICATION CARD",
@@ -1245,13 +2188,19 @@ async function drawIDC() {
     /* PHOTO BOX */
 
     const photoBoxX = 55;
+
     const photoBoxY = 150;
+
     const photoBoxW = 260;
+
     const photoBoxH = 330;
 
 
-    ctx.strokeStyle = "#d8b45c";
+    ctx.strokeStyle =
+        "#d8b45c";
+
     ctx.lineWidth = 3;
+
 
     ctx.strokeRect(
         photoBoxX,
@@ -1263,33 +2212,46 @@ async function drawIDC() {
 
     /* PHOTO */
 
-    if (studentPhoto && photoLoaded) {
+    if (
+        studentPhoto &&
+        photoLoaded
+    ) {
 
         const baseScale =
             Math.max(
-                photoBoxW / studentPhoto.width,
-                photoBoxH / studentPhoto.height
+                photoBoxW /
+                    studentPhoto.width,
+
+                photoBoxH /
+                    studentPhoto.height
             );
 
 
         const finalScale =
-            baseScale * photoScale;
+            baseScale *
+            photoScale;
 
 
         const drawW =
-            studentPhoto.width * finalScale;
+            studentPhoto.width *
+            finalScale;
 
         const drawH =
-            studentPhoto.height * finalScale;
+            studentPhoto.height *
+            finalScale;
+
 
         const drawX =
-            photoX - drawW / 2;
+            photoX -
+            drawW / 2;
 
         const drawY =
-            photoY - drawH / 2;
+            photoY -
+            drawH / 2;
 
 
         ctx.save();
+
 
         ctx.beginPath();
 
@@ -1300,7 +2262,9 @@ async function drawIDC() {
             photoBoxH
         );
 
+
         ctx.clip();
+
 
         ctx.drawImage(
             studentPhoto,
@@ -1310,12 +2274,14 @@ async function drawIDC() {
             drawH
         );
 
+
         ctx.restore();
 
     } else {
 
         ctx.fillStyle =
             "rgba(255,255,255,0.08)";
+
 
         ctx.fillRect(
             photoBoxX,
@@ -1325,17 +2291,27 @@ async function drawIDC() {
         );
 
 
-        ctx.fillStyle = "#d8dce3";
-        ctx.font = "16px Georgia";
-        ctx.textAlign = "center";
+        ctx.fillStyle =
+            "#d8dce3";
+
+        ctx.font =
+            "16px Georgia";
+
+        ctx.textAlign =
+            "center";
+
 
         ctx.fillText(
             "STUDENT PHOTO",
-            photoBoxX + photoBoxW / 2,
-            photoBoxY + photoBoxH / 2
+            photoBoxX +
+                photoBoxW / 2,
+            photoBoxY +
+                photoBoxH / 2
         );
 
-        ctx.textAlign = "left";
+
+        ctx.textAlign =
+            "left";
 
     }
 
@@ -1349,8 +2325,12 @@ async function drawIDC() {
             : "YOUR NAME";
 
 
-    ctx.fillStyle = "#d8b45c";
-    ctx.font = "12px Georgia";
+    ctx.fillStyle =
+        "#d8b45c";
+
+    ctx.font =
+        "12px Georgia";
+
 
     ctx.fillText(
         "STUDENT NAME",
@@ -1359,8 +2339,12 @@ async function drawIDC() {
     );
 
 
-    ctx.fillStyle = "#f4e7c1";
-    ctx.font = "bold 28px Georgia";
+    ctx.fillStyle =
+        "#f4e7c1";
+
+    ctx.font =
+        "bold 28px Georgia";
+
 
     ctx.fillText(
         name,
@@ -1371,8 +2355,12 @@ async function drawIDC() {
 
     /* HOUSE */
 
-    ctx.fillStyle = "#d8b45c";
-    ctx.font = "12px Georgia";
+    ctx.fillStyle =
+        "#d8b45c";
+
+    ctx.font =
+        "12px Georgia";
+
 
     ctx.fillText(
         "HOUSE",
@@ -1381,8 +2369,12 @@ async function drawIDC() {
     );
 
 
-    ctx.fillStyle = "#f4e7c1";
-    ctx.font = "bold 25px Georgia";
+    ctx.fillStyle =
+        "#f4e7c1";
+
+    ctx.font =
+        "bold 25px Georgia";
+
 
     ctx.fillText(
         selectedHouseData.name.toUpperCase(),
@@ -1396,7 +2388,9 @@ async function drawIDC() {
     ctx.fillStyle =
         "rgba(244,231,193,0.8)";
 
-    ctx.font = "italic 13px Georgia";
+    ctx.font =
+        "italic 13px Georgia";
+
 
     ctx.fillText(
         selectedHouseData.motto,
@@ -1405,17 +2399,34 @@ async function drawIDC() {
     );
 
 
-    /* GEN */
+    /* GENERATION */
+
+    const currentPeriod =
+        getCurrentSortingPeriod();
+
+
+    /*
+     * Kalau user masih mengisi field
+     * generation secara manual, nilainya
+     * tetap dipakai.
+     *
+     * Kalau kosong, otomatis menggunakan
+     * sorting period.
+     */
 
     const studentGen =
         studentGenInput &&
         studentGenInput.value.trim()
             ? studentGenInput.value.trim()
-            : "—";
+            : currentPeriod;
 
 
-    ctx.fillStyle = "#d8b45c";
-    ctx.font = "12px Georgia";
+    ctx.fillStyle =
+        "#d8b45c";
+
+    ctx.font =
+        "12px Georgia";
+
 
     ctx.fillText(
         "GEN",
@@ -1424,8 +2435,12 @@ async function drawIDC() {
     );
 
 
-    ctx.fillStyle = "#f4e7c1";
-    ctx.font = "18px Georgia";
+    ctx.fillStyle =
+        "#f4e7c1";
+
+    ctx.font =
+        "18px Georgia";
+
 
     ctx.fillText(
         studentGen,
@@ -1436,8 +2451,12 @@ async function drawIDC() {
 
     /* STUDENT ID */
 
-    ctx.fillStyle = "#d8b45c";
-    ctx.font = "12px Georgia";
+    ctx.fillStyle =
+        "#d8b45c";
+
+    ctx.font =
+        "12px Georgia";
+
 
     ctx.fillText(
         "STUDENT ID",
@@ -1446,8 +2465,12 @@ async function drawIDC() {
     );
 
 
-    ctx.fillStyle = "#f4e7c1";
-    ctx.font = "17px Georgia";
+    ctx.fillStyle =
+        "#f4e7c1";
+
+    ctx.font =
+        "17px Georgia";
+
 
     ctx.fillText(
         studentId,
@@ -1458,8 +2481,12 @@ async function drawIDC() {
 
     /* STATUS */
 
-    ctx.fillStyle = "#d8b45c";
-    ctx.font = "12px Georgia";
+    ctx.fillStyle =
+        "#d8b45c";
+
+    ctx.font =
+        "12px Georgia";
+
 
     ctx.fillText(
         "STATUS",
@@ -1468,8 +2495,12 @@ async function drawIDC() {
     );
 
 
-    ctx.fillStyle = "#f4e7c1";
-    ctx.font = "bold 18px Georgia";
+    ctx.fillStyle =
+        "#f4e7c1";
+
+    ctx.font =
+        "bold 18px Georgia";
+
 
     ctx.fillText(
         "ACTIVE STUDENT",
@@ -1495,8 +2526,12 @@ async function drawIDC() {
         ).toUpperCase();
 
 
-    ctx.fillStyle = "#d8b45c";
-    ctx.font = "12px Georgia";
+    ctx.fillStyle =
+        "#d8b45c";
+
+    ctx.font =
+        "12px Georgia";
+
 
     ctx.fillText(
         "DATE OF ENROLLMENT",
@@ -1505,8 +2540,12 @@ async function drawIDC() {
     );
 
 
-    ctx.fillStyle = "#f4e7c1";
-    ctx.font = "17px Georgia";
+    ctx.fillStyle =
+        "#f4e7c1";
+
+    ctx.font =
+        "17px Georgia";
+
 
     ctx.fillText(
         enrollmentDate,
@@ -1522,10 +2561,18 @@ async function drawIDC() {
 
     ctx.lineWidth = 1;
 
+
     ctx.beginPath();
 
-    ctx.moveTo(370, 485);
-    ctx.lineTo(850, 485);
+    ctx.moveTo(
+        370,
+        485
+    );
+
+    ctx.lineTo(
+        850,
+        485
+    );
 
     ctx.stroke();
 
@@ -1535,7 +2582,9 @@ async function drawIDC() {
     ctx.fillStyle =
         "rgba(244,231,193,0.75)";
 
-    ctx.font = "12px Georgia";
+    ctx.font =
+        "12px Georgia";
+
 
     ctx.fillText(
         "OFFICIALLY ENROLLED • HOWSORCS TEAM CORE",
@@ -1547,7 +2596,9 @@ async function drawIDC() {
     ctx.fillStyle =
         "rgba(216,180,92,0.75)";
 
-    ctx.font = "11px Georgia";
+    ctx.font =
+        "11px Georgia";
+
 
     ctx.fillText(
         "WHERE MAGIC BEGINS.",
@@ -1571,6 +2622,7 @@ if (studentPhotoInput) {
             const file =
                 event.target.files[0];
 
+
             if (!file) {
                 return;
             }
@@ -1590,16 +2642,30 @@ if (studentPhotoInput) {
                     image.onload =
                         function() {
 
-                            studentPhoto = image;
-                            photoLoaded = true;
+                            studentPhoto =
+                                image;
 
-                            photoX = 185;
-                            photoY = 315;
-                            photoScale = 1;
+                            photoLoaded =
+                                true;
 
 
-                            if (photoScaleInput) {
-                                photoScaleInput.value = "1";
+                            photoX =
+                                185;
+
+                            photoY =
+                                315;
+
+                            photoScale =
+                                1;
+
+
+                            if (
+                                photoScaleInput
+                            ) {
+
+                                photoScaleInput.value =
+                                    "1";
+
                             }
 
 
@@ -1608,12 +2674,15 @@ if (studentPhotoInput) {
                         };
 
 
-                    image.src = e.target.result;
+                    image.src =
+                        e.target.result;
 
                 };
 
 
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(
+                file
+            );
 
         }
     );
@@ -1656,6 +2725,7 @@ if (photoScaleInput) {
                     photoScaleInput.value
                 ) || 1;
 
+
             drawIDC();
 
         }
@@ -1674,13 +2744,21 @@ if (resetPhotoButton) {
         "click",
         function() {
 
-            photoX = 185;
-            photoY = 315;
-            photoScale = 1;
+            photoX =
+                185;
+
+            photoY =
+                315;
+
+            photoScale =
+                1;
 
 
             if (photoScaleInput) {
-                photoScaleInput.value = "1";
+
+                photoScaleInput.value =
+                    "1";
+
             }
 
 
@@ -1710,12 +2788,19 @@ if (idcCanvas) {
         "pointerdown",
         function(event) {
 
-            if (!studentPhoto || !photoLoaded) {
+            if (
+                !studentPhoto ||
+                !photoLoaded
+            ) {
+
                 return;
+
             }
 
 
-            draggingPhoto = true;
+            draggingPhoto =
+                true;
+
 
             idcCanvas.setPointerCapture(
                 event.pointerId
@@ -1727,18 +2812,28 @@ if (idcCanvas) {
 
 
             const scaleX =
-                idcCanvas.width / rect.width;
+                idcCanvas.width /
+                rect.width;
+
 
             const scaleY =
-                idcCanvas.height / rect.height;
+                idcCanvas.height /
+                rect.height;
 
 
             dragStartX =
-                (event.clientX - rect.left) *
+                (
+                    event.clientX -
+                    rect.left
+                ) *
                 scaleX;
 
+
             dragStartY =
-                (event.clientY - rect.top) *
+                (
+                    event.clientY -
+                    rect.top
+                ) *
                 scaleY;
 
         }
@@ -1759,30 +2854,46 @@ if (idcCanvas) {
 
 
             const scaleX =
-                idcCanvas.width / rect.width;
+                idcCanvas.width /
+                rect.width;
+
 
             const scaleY =
-                idcCanvas.height / rect.height;
+                idcCanvas.height /
+                rect.height;
 
 
             const currentX =
-                (event.clientX - rect.left) *
+                (
+                    event.clientX -
+                    rect.left
+                ) *
                 scaleX;
 
+
             const currentY =
-                (event.clientY - rect.top) *
+                (
+                    event.clientY -
+                    rect.top
+                ) *
                 scaleY;
 
 
             photoX +=
-                currentX - dragStartX;
+                currentX -
+                dragStartX;
+
 
             photoY +=
-                currentY - dragStartY;
+                currentY -
+                dragStartY;
 
 
-            dragStartX = currentX;
-            dragStartY = currentY;
+            dragStartX =
+                currentX;
+
+            dragStartY =
+                currentY;
 
 
             drawIDC();
@@ -1795,7 +2906,8 @@ if (idcCanvas) {
         "pointerup",
         function() {
 
-            draggingPhoto = false;
+            draggingPhoto =
+                false;
 
         }
     );
@@ -1805,7 +2917,8 @@ if (idcCanvas) {
         "pointercancel",
         function() {
 
-            draggingPhoto = false;
+            draggingPhoto =
+                false;
 
         }
     );
@@ -1832,7 +2945,9 @@ if (downloadIdcButton) {
 
 
             const link =
-                document.createElement("a");
+                document.createElement(
+                    "a"
+                );
 
 
             link.download =
@@ -1868,6 +2983,10 @@ if (downloadIdcButton) {
 initializeIDC();
 
 
+/* =====================================================
+   CONSOLE
+   ===================================================== */
+
 console.log(
     "HOWSORCS JavaScript berhasil dimuat."
 );
@@ -1881,4 +3000,14 @@ console.log(
 console.log(
     "Questions per sorting:",
     QUESTIONS_TO_SHOW
+);
+
+console.log(
+    "Current sorting period:",
+    getCurrentSortingPeriod()
+);
+
+console.log(
+    "Current House status:",
+    getCurrentHouseStatus()
 );
