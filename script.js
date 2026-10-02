@@ -995,11 +995,12 @@ async function saveStudentPlacement(
 
 }
 
-
 return {
     success: true,
     student: student
 };
+
+}
 
 /* =====================================================
    PLACE STUDENT
