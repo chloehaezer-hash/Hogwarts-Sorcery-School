@@ -3,6 +3,27 @@
    SORTING HAT + HOUSE PLACEMENT + IDC EDITOR
    ===================================================== */
 
+"use strict";
+
+/* ============================================================
+   SUPABASE CONFIGURATION
+   ============================================================ */
+
+const SUPABASE_URL = "https://ptnuyvofvxwuomcrtaei.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_lfCUpDFWQSwZc6CeSHFu9Q_60lBkhif";
+
+let supabaseClient = null;
+
+if (
+    typeof window.supabase !== "undefined" &&
+    SUPABASE_URL !== "YOUR_SUPABASE_URL" &&
+    SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY"
+) {
+    supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+}
 
 /* =====================================================
    SORTING SYSTEM SETTINGS
