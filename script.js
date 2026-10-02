@@ -30,7 +30,7 @@ if (
    ===================================================== */
 
 const SORTING_START_DATE =
-    new Date("2026-08-31T00:00:00+07:00");
+    new Date("2026-10-01T00:00:00+07:00");
 
 const SORTING_PERIOD_DAYS = 10;
 
