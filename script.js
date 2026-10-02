@@ -658,10 +658,7 @@ function getStudentsForPeriod(period) {
    GET HOUSE COUNTS
    ===================================================== */
 
-function getHouseCountsForPeriod(period) {
-
-    const students =
-        getStudentsForPeriod(period);
+async function getHouseCountsForPeriod(period) {
 
     const counts = {
 
@@ -673,7 +670,26 @@ function getHouseCountsForPeriod(period) {
     };
 
 
-    students.forEach(
+    const { data, error } =
+        await supabaseClient
+            .from("house_placements")
+            .select("house")
+            .eq("period", period);
+
+
+    if (error) {
+
+        console.error(
+            "Gagal mengambil data House dari Supabase:",
+            error
+        );
+
+        return counts;
+
+    }
+
+
+    (data || []).forEach(
         function(student) {
 
             if (
@@ -781,13 +797,13 @@ function getHouseRanking(scores) {
    FIND HOUSE FOR STUDENT
    ===================================================== */
 
-function findHouseForStudent(scores) {
+async function findHouseForStudent(scores) {
 
     const period =
         getCurrentSortingPeriod();
 
     const counts =
-        getHouseCountsForPeriod(
+        await getHouseCountsForPeriod(
             period
         );
 
@@ -920,7 +936,7 @@ function getRegistrationStudentName() {
    SAVE STUDENT HOUSE PLACEMENT
    ===================================================== */
 
-function saveStudentPlacement(
+async function saveStudentPlacement(
     house,
     scores,
     studentId
@@ -928,21 +944,6 @@ function saveStudentPlacement(
 
     const period =
         getCurrentSortingPeriod();
-
-    const data =
-        getHousePlacementData();
-
-
-    if (
-        !Array.isArray(
-            data[period]
-        )
-    ) {
-
-        data[period] = [];
-
-    }
-
 
     const student = {
 
@@ -965,29 +966,49 @@ function saveStudentPlacement(
     };
 
 
-    data[period].push(
-        student
+    const { data, error } =
+        await supabaseClient
+            .from("house_placements")
+            .insert({
+                student_id: student.id,
+                full_name: student.name,
+                house: student.house,
+                period: student.period,
+                scores: student.scores,
+                created_at: student.createdAt
+            })
+            .select()
+            .single();
+
+
+   if (error) {
+
+    console.error(
+        "Gagal menyimpan House ke Supabase:",
+        error
     );
 
-
-    saveHousePlacementData(
-        data
-    );
-
-
-    return student;
+    return {
+        success: false,
+        error: error
+    };
 
 }
 
+
+return {
+    success: true,
+    student: student
+};
 
 /* =====================================================
    PLACE STUDENT
    ===================================================== */
 
-function placeStudent(scores) {
+async function placeStudent(scores) {
 
     const result =
-        findHouseForStudent(
+        await findHouseForStudent(
             scores
         );
 
@@ -1018,12 +1039,36 @@ function placeStudent(scores) {
         );
 
 
-    const student =
-        saveStudentPlacement(
-            result.house,
-            scores,
-            studentIdPreview
-        );
+const saved =
+    await saveStudentPlacement(
+        result.house,
+        scores,
+        studentIdPreview
+    );
+
+
+if (!saved.success) {
+
+    return {
+
+        success: false,
+
+        message:
+            "House gagal disimpan ke database.",
+
+        period:
+            result.period,
+
+        counts:
+            result.counts
+
+    };
+
+}
+
+
+const student =
+    saved.student;
 
 
     return {
@@ -1040,7 +1085,7 @@ function placeStudent(scores) {
             result.period,
 
         counts:
-            getHouseCountsForPeriod(
+              await getHouseCountsForPeriod(
                 result.period
             ),
 
@@ -1391,7 +1436,7 @@ function getWinningHouse() {
    SHOW RESULT
    ===================================================== */
 
-function showResult() {
+ async function showResult() {
 
     if (!sortingResult) {
         return;
@@ -1408,7 +1453,7 @@ function showResult() {
      */
 
     const placement =
-        placeStudent(
+        await placeStudent(
             scores
         );
 
