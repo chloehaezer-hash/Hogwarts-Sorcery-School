@@ -374,6 +374,8 @@ let activeQuestions = [];
 
 let currentQuestion = 0;
 
+let isSubmitting = false;
+
 let scores = {
     aurelion: 0,
     corvane: 0,
@@ -931,7 +933,6 @@ function getRegistrationStudentName() {
 
 }
 
-
 /* =====================================================
    SAVE STUDENT HOUSE PLACEMENT
    ===================================================== */
@@ -1437,26 +1438,37 @@ function getWinningHouse() {
    SHOW RESULT
    ===================================================== */
 
- async function showResult() {
+async function showResult() {
 
     if (!sortingResult) {
         return;
     }
 
+    // Mencegah SorHat tersubmit lebih dari satu kali
+    if (isSubmitting) {
+        console.log("SorHat sedang diproses, submission kedua diblok.");
+        return;
+    }
 
-    /*
-     * Jangan lagi langsung menggunakan
-     * getWinningHouse() sebagai House final.
-     *
-     * Sekarang quiz menentukan RANKING,
-     * lalu sistem placement menentukan
-     * House final berdasarkan kapasitas.
-     */
+    isSubmitting = true;
 
     const placement =
-        await placeStudent(
-            scores
-        );
+        await placeStudent(scores);
+
+    if (!placement.success) {
+        isSubmitting = false;
+
+        sortingResult.innerHTML = `
+            <div class="sorting-error">
+                ${placement.message}
+            </div>
+        `;
+
+        return;
+    }
+
+    // JANGAN reset isSubmitting di sini.
+    // Tetap true supaya hasil tidak disimpan ulang.
 
 
     if (!placement.success) {
