@@ -498,31 +498,7 @@ function shuffleArray(array) {
    ===================================================== */
 
 function getCurrentSortingPeriod() {
-
-    const now =
-        new Date();
-
-    const difference =
-        now.getTime() -
-        SORTING_START_DATE.getTime();
-
-    if (difference < 0) {
-        return 1;
-    }
-
-    const daysPassed =
-        Math.floor(
-            difference /
-            (1000 * 60 * 60 * 24)
-        );
-
-    return (
-        Math.floor(
-            daysPassed /
-            SORTING_PERIOD_DAYS
-        ) + 1
-    );
-
+    return 2;
 }
 
 
