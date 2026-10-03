@@ -915,17 +915,12 @@ async function findHouseForStudent(scores) {
 
 function getRegistrationStudentName() {
 
-    const input =
-        document.getElementById(
-            "register-student-name"
-        );
-
     if (
-        input &&
-        input.value.trim()
+        studentNameInput &&
+        studentNameInput.value.trim()
     ) {
 
-        return input.value.trim();
+        return studentNameInput.value.trim();
 
     }
 
@@ -1000,6 +995,51 @@ return {
     success: true,
     student: student
 };
+
+}
+
+/* =====================================================
+   UPDATE STUDENT NAME
+   ===================================================== */
+
+async function updateStudentName() {
+
+    if (
+        !studentId ||
+        !studentNameInput ||
+        !studentNameInput.value.trim()
+    ) {
+        return;
+    }
+
+    const name =
+        studentNameInput.value.trim();
+
+    const { error } =
+        await supabaseClient
+            .from("house_placements")
+            .update({
+                full_name: name
+            })
+            .eq(
+                "student_id",
+                studentId
+            );
+
+    if (error) {
+
+        console.error(
+            "Gagal memperbarui nama siswa:",
+            error
+        );
+
+        return;
+    }
+
+    console.log(
+        "Nama siswa berhasil diperbarui:",
+        name
+    );
 
 }
 
@@ -2777,7 +2817,13 @@ if (studentNameInput) {
 
     studentNameInput.addEventListener(
         "input",
-        drawIDC
+        function() {
+
+            drawIDC();
+
+            updateStudentName();
+
+        }
     );
 
 }
