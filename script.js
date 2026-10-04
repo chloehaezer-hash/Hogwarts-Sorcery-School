@@ -638,22 +638,28 @@ function getStudentsForPeriod(period) {
 
 async function getHouseCountsForPeriod(period) {
 
-    const counts = {
+    // PERIODE 2 — Aurelion, Corvane, Vesperyn dianggap sudah penuh
+    if (period === 2) {
+        return {
+            aurelion: 15,
+            corvane: 15,
+            fidelis: 0,
+            vesperyn: 15
+        };
+    }
 
+    const counts = {
         aurelion: 0,
         corvane: 0,
         fidelis: 0,
         vesperyn: 0
-
     };
-
 
     const { data, error } =
         await supabaseClient
             .from("house_placements")
             .select("house")
             .eq("period", period);
-
 
     if (error) {
 
@@ -663,9 +669,7 @@ async function getHouseCountsForPeriod(period) {
         );
 
         return counts;
-
     }
-
 
     (data || []).forEach(
         function(student) {
@@ -678,15 +682,11 @@ async function getHouseCountsForPeriod(period) {
             ) {
 
                 counts[student.house]++;
-
             }
-
         }
     );
 
-
     return counts;
-
 }
 
 
